@@ -1,12 +1,41 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventario proveedores</title>
-</head>
-<body>
-    
-</body>
-</html>
+{% extends 'main/main.html'%}
+{% block content %}
+    <div class="container">
+      <div class="row py-5 justify-content-center">
+        <h2> Proveedores </h2>
+      </div>
+        <div class="row">
+            <table class="table table-striped mx-5">
+                <thead>
+                  <tr style="background-color: darkkhaki;">
+                    <th scope="col">ID</th>
+                    <th scope="col">NIT</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Productos</th>
+                    <th scope="col">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>723462-2</td>
+                    <td>Llantas el lider</td>
+                    <td>Llantas, rines, escapulas</td>
+                    <td>
+                      <a href=""> 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 8 8">
+                          <path d="M6 0l-1 1 2 2 1-1-2-2zm-2 2l-4 4v2h2l4-4-2-2z" />
+                        </svg> 
+                      </a>
+                      <a href="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 8 8">
+                          <path d="M3 0c-.55 0-1 .45-1 1h-1c-.55 0-1 .45-1 1h7c0-.55-.45-1-1-1h-1c0-.55-.45-1-1-1h-1zm-2 3v4.81c0 .11.08.19.19.19h4.63c.11 0 .19-.08.19-.19v-4.81h-1v3.5c0 .28-.22.5-.5.5s-.5-.22-.5-.5v-3.5h-1v3.5c0 .28-.22.5-.5.5s-.5-.22-.5-.5v-3.5h-1z" />
+                        </svg>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+{% endblock %}
