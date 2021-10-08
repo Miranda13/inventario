@@ -4,6 +4,10 @@
     font-family: 'Libre Franklin', sans-serif;
 }
 
+svg {
+    margin: 5px;
+}
+
 header {
     display: flex;
     background-color: darkkhaki;
