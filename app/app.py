@@ -18,5 +18,13 @@ def proveedores():
 def usuarios():
     return render_template('usuarios/usuarios.html')
 
+@app.route('/usuarios/editar')
+def editarUsuarios():
+    return render_template('usuarios/editar-usuarios.html')
+
+@app.route('/usuarios/crear')
+def crearUsuarios():
+    return render_template('usuarios/crear-usuarios.html')
+
 if __name__ == '__main__':
     app.run(debug = True, port = 8000)
