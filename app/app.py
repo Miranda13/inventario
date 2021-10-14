@@ -10,6 +10,14 @@ def main():
 def productos():
     return render_template('productos/productos.html')
 
+@app.route('/productos/editar')
+def editarproductos():
+    return render_template('productos/editar-productos.html')
+
+@app.route('/productos/crear')
+def crearproductos():
+    return render_template('productos/crear-productos.html')
+
 @app.route('/proveedores')
 def proveedores():
     return render_template('proveedores/proveedores.html')
