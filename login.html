@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" />
+  <link rel="stylesheet" type="text/css" href="../../static/css/styles.css" th:href="@{/css/styles.css}" />
+
+  <title>Login</title>
+</head>
+
+<body>
+  <header class="d-flex justify-content-around">
+    <p class="d-flex align-items-center pl-3">Suzuki Motor Inventario</p>
+    <img class="ml-auto" src="../../static/img/motos.jpeg" alt="" />
+  </header>
+
+  <div class="modal-dialog text-center">
+    <div class="col-sm-12 main-section">
+      <div class="modal-content">
+        <div class="col-12 user-img">
+          <img src="../../static/img/user3.png" th:src="@{/img/user.png}" />
+        </div>
+        <form class="col-12" th:action="@{/login}" method="get">
+          <div class="form-group" id="user-group">
+            <input type="text" class="form-control" placeholder="Nombre de usuario" name="username" />
+          </div>
+          <div class="form-group" id="contrasena-group">
+            <input type="password" class="form-control" placeholder="Contraseña" name="password" />
+          </div>
+
+          <a id="btn-sub" type="submit" class="btn btn-primary fas fa-sign-in-alt" href="/main">Ingresar</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
