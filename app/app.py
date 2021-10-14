@@ -3,20 +3,16 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 @app.route('/')
+def login():
+    return render_template('login/login.html')
+
+@app.route('/main')
 def main():
     return render_template('main/main.html')
 
 @app.route('/productos')
 def productos():
     return render_template('productos/productos.html')
-
-@app.route('/productos/editar')
-def editarproductos():
-    return render_template('productos/editar-productos.html')
-
-@app.route('/productos/crear')
-def crearproductos():
-    return render_template('productos/crear-productos.html')
 
 @app.route('/proveedores')
 def proveedores():
@@ -25,6 +21,10 @@ def proveedores():
 @app.route('/usuarios')
 def usuarios():
     return render_template('usuarios/usuarios.html')
+
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboard/dashboard.html')
 
 @app.route('/usuarios/editar')
 def editarUsuarios():
