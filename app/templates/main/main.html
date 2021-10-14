@@ -1,37 +1,45 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../static/css/styles.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../static/css/styles.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Document</title>
 </head>
+
 <body>
-    <header class="d-flex justify-content-around">
-        <p class="d-flex align-items-center pl-3"> Suzuki Motor Inventario</p>
-        <img class="ml-auto" src="../../static/img/motos.jpeg" alt="">
-    </header>
-    <div class="row">
-        <div class="col-3">
-            <ul class="nav nav-tabs flex-column" id="myTab" role="tablist">
-                <li class="nav-item">
-                  <a class="nav-link" id="home-tab" data-toggle="tab" role="tab" href="/proveedores">Proveedores</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="profile-tab" data-toggle="tab" role="tab" href="/productos">Productos</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="contact-tab" data-toggle="tab" role="tab" href="/usuarios">Usuarios</a>
-                </li>
-            </ul>               
-        </div>
-        <div class="col">
-            {% block content %}
-            {% endblock %}
-        </div>
+  <header class="d-flex justify-content-around">
+    <p class="d-flex align-items-center pl-3"> Suzuki Motor Inventario</p>
+    <img class="ml-auto" src="../../static/img/motos.jpeg" alt="">
+  </header>
+  <div class="row">
+    <div class="col-3">
+      <ul class="nav nav-tabs flex-column" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link" id="home-tab" data-toggle="tab" role="tab" href="/proveedores">Proveedores</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="profile-tab" data-toggle="tab" role="tab" href="/productos">Productos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="dasboard-tab" data-toggle="tab" role="tab" href="/dashboard">Administrativo</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="contact-tab" data-toggle="tab" role="tab" href="/usuarios">Usuarios</a>
+        </li>
+
+      </ul>
     </div>
-    
+    <div class="col">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </div>
+
 </body>
+
 </html>

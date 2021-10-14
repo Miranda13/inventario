@@ -71,3 +71,48 @@ header p {
     width: 60%;
     margin: 5px 0 25px;
 }
+
+.panel img{
+    width: 200xp;
+    height: 200px;
+}
+
+.dashboard-wrapper {
+	margin: auto;
+	max-width: 920px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-column-gap: 10px;
+	grid-row-gap: 10px;
+	}
+
+
+.dashboard-wrapper .panel {
+	text-align: center;
+	background-color: #fff;
+	border: 1px solid #d3d3d3;
+	box-shadow: 0 0 4px 1px rgba(143,143,143,.2);
+	padding: 15px;
+	}
+
+
+.dashboard-wrapper #p1.panel {
+	grid-column: 1 / 2;
+	}
+
+
+.bottom {
+	font-size: 10px;
+	margin-top: 15px;
+	}
+
+.bottom a {
+	color: #333;
+	text-decoration: none;
+	}
+
+@media screen and (max-width: 1024px) {
+	.dashboard-wrapper .panel {
+		grid-column: 1 / 4;
+		}	
+	}

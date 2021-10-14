@@ -1,0 +1,63 @@
+{% extends 'main/main.html'%}
+{% block content %}
+<div class="container">
+    <div class="row py-5 justify-content-center">
+        <h2>Administrativo</h2>
+    </div>
+</div>
+<div class="row m-2 d-flex">
+    <!-- Grid con todos los paneles -->
+    <div class="dashboard-wrapper">
+        <div id='p2' class='panel'><img src="../../static/img/descarga.png" alt="pag">
+            <div id='p2Chart'></div>
+        </div>
+        <div id='p3' class='panel'><img src="../../static/img/descarga.png" alt="pag">
+            <div id='p3Chart'></div>
+        </div>
+        <div id='p4' class='panel'><img src="../../static/img/descarga.png" alt="pag">
+            <div id='p4Chart'></div>
+        </div>
+        <div id='p6' class='panel'><img src="../../static/img/descarga.png" alt="pag">
+            <div id='p4Chart'></div>
+        </div>
+        <div id='p1' class='panel'>
+            <div id='p1Chart'>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td colspan="2"></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id='p5' class='panel'>
+            <h2></h2>
+            <div id='p5Chart'></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
