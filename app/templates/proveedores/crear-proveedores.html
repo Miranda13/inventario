@@ -1,0 +1,26 @@
+{% extends 'main/main.html'%}
+{% block content %}
+    <div class="container">
+      <div class="row py-5 justify-content-center">
+        <h2> Proveedores </h2>
+      </div>
+      <div class="row m-2 d-flex">
+        <h4>Crear Proveedor</h4>
+        <form class="form-inline my-2 my-lg-0">
+          <p class="m-4"> NIT: </p>
+          <input class="form-control mr-sm-2" type="string" placeholder="Ingrese nit ..." aria-label="Search">
+          <p class="m-4"> Nombre: </p>
+          <input class="form-control mr-sm-2" type="email" placeholder="Ingrese nombre ..." aria-label="Search">
+          <p class="m-4"> Producto: </p>
+          <input class="form-control mr-sm-2" type="search" placeholder="Seleccione producto ..." aria-label="Search">
+          <br></br>
+          <button class="btn btn-outline-success m-2 my-sm-0 px-2" type="submit">
+            Crear Proveedor
+          </button>
+          <button onclick="window.location.href='/proveedores'"class="btn btn-outline-danger m-2 my-sm-0 px-2" type="submit">
+            Cancelar
+          </button>
+        </form>
+      </div>
+    </div>
+{% endblock %}

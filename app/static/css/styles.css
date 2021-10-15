@@ -4,6 +4,10 @@
     font-family: 'Libre Franklin', sans-serif;
 }
 
+svg {
+    margin: 5px;
+}
+
 header {
     display: flex;
     background-color: darkkhaki;
@@ -14,3 +18,101 @@ header p {
     color: white;
     font-weight: 800;
 }
+
+.main-section{
+    margin:0 auto;
+    margin-top:25%;
+    padding: 0;
+}
+
+.modal-content{
+    background-color: black;
+    opacity: .75;
+    padding: 0 20px;
+    box-shadow: 0px 0px 3px #848484;
+}
+.user-img{
+    margin-top: -50px;
+    margin-bottom: 35px;
+}
+
+.user-img img{
+    width: 100xp;
+    height: 100px;
+    box-shadow: 0px 0px 3px darkkhaki;
+    border-radius: 50%;
+}
+
+.form-group input{
+    height: 42px;
+    font-size: 18px;
+    border:0;
+    padding-left: 54px;
+    border-radius: 5px;
+}
+
+.form-group::before{
+    font-family: "Font Awesome\ 5 Free";
+    position: absolute;
+    left: 28px;
+    font-size: 22px;
+    padding-top:4px;
+}
+
+.form-group#user-group::before{
+    content: "\f007";
+}
+
+.form-group#contrasena-group::before{
+    content: "\f023";
+}
+
+#btn-sub{
+    width: 60%;
+    margin: 5px 0 25px;
+}
+
+.panel img{
+    width: 200xp;
+    height: 200px;
+}
+
+.dashboard-wrapper {
+	margin: auto;
+	max-width: 920px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-column-gap: 10px;
+	grid-row-gap: 10px;
+	}
+
+
+.dashboard-wrapper .panel {
+	text-align: center;
+	background-color: #fff;
+	border: 1px solid #d3d3d3;
+	box-shadow: 0 0 4px 1px rgba(143,143,143,.2);
+	padding: 15px;
+	}
+
+
+.dashboard-wrapper #p1.panel {
+	grid-column: 1 / 2;
+	}
+
+
+.bottom {
+	font-size: 10px;
+	margin-top: 15px;
+	}
+
+.bottom a {
+	color: #333;
+	text-decoration: none;
+	}
+
+@media screen and (max-width: 1024px) {
+	.dashboard-wrapper .panel {
+		grid-column: 1 / 4;
+		}	
+	}
