@@ -24,7 +24,8 @@
         <div class="col-12 user-img">
           <img src="../../static/img/user3.png" th:src="@{/img/user.png}" />
         </div>
-        <form class="col-12" th:action="@{/login}" method="get">
+        <form class="col-12" action="/" method="POST">
+          {{ csrf_token }}
           <div class="form-group" id="user-group">
             <input type="text" class="form-control" placeholder="Nombre de usuario" name="username" />
           </div>
@@ -32,7 +33,7 @@
             <input type="password" class="form-control" placeholder="Contraseña" name="password" />
           </div>
 
-          <a id="btn-sub" type="submit" class="btn btn-primary fas fa-sign-in-alt" href="/main">Ingresar</a>
+          <button id="btn-sub" type="submit" class="btn btn-primary fas fa-sign-in-alt">Ingresar</button>
         </form>
       </div>
     </div>
