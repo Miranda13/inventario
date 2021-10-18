@@ -4,15 +4,15 @@
     <h2>Productos</h2>
   </div>
   <div class="row m-2 d-flex">
-    <p class="m-4">Buscar producto:</p>
+    <p class="m-4"> Buscar producto: </p>
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Atributo a buscar..." aria-label="Search" />
+      <input class="form-control mr-sm-2" type="search" placeholder="Atributo a buscar..." aria-label="Search">
       <button class="btn btn-outline-success m-2 my-sm-0 px-2" type="submit">
         Buscar
       </button>
     </form>
-    <button onclick="window.location.href='/productos/crear'" type="button"
-      class="btn ml-auto mr-3 btn-outline-success">
+    <button onclick="window.location.href='/proveedores/crear'" type="button"
+      class="btn ml-auto mr-4 my-2" id="buttonMain">
       <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 8 8">
         <path fill="#ffff" d="M3 0v3h-3v2h3v3h2v-3h3v-2h-3v-3h-2z" />
       </svg>
@@ -22,7 +22,7 @@
   <div class="row">
     <table class="table table-striped mx-5 my-2">
       <thead>
-        <tr style="background-color: darkkhaki">
+        <tr class="fila">
           <th scope="col">ID</th>
           <th scope="col">Nombre</th>
           <th scope="col">Descripción</th>
