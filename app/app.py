@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request, redirect
+from forms.forms import FormularioUsuario, FormularioProducto, FormularioProveedor
+import os 
 
 app = Flask(__name__)
+app.secret_key = os.urandom(24)
 
 @app.route('/', methods = ['GET', 'POST'])
 def login():
@@ -25,7 +28,11 @@ def productos():
 
 @app.route('/productos/crear', methods = ['GET','POST'])
 def crear_producto():
-    return render_template('productos/crear-productos.html')
+    formulario = FormularioProducto()
+    if request.method == "POST":
+        if (formulario.validate_on_submit()):
+            print("valido") 
+    return render_template('productos/crear-productos.html', form = formulario)
 
 @app.route('/productos/editar/<id>', methods = ['GET','POST'])
 def editar_producto(id = int):
@@ -43,7 +50,11 @@ def usuarios():
 
 @app.route('/usuarios/crear', methods = ['GET','POST'])
 def crear_usuario():
-    return render_template('usuarios/crear-usuarios.html')
+    formulario = FormularioUsuario()
+    if request.method == "POST":
+        if (formulario.validate_on_submit()):
+            print("valido") 
+    return render_template('usuarios/crear-usuarios.html', form = formulario)
 
 @app.route('/usuarios/editar/<id>', methods = ['GET','POST'])
 def editar_usuario(id = int):
@@ -61,7 +72,11 @@ def proveedores():
 
 @app.route('/proveedores/crear', methods = ['GET','POST'])
 def crear_proveedor():
-    return render_template('proveedores/crear-proveedores.html')
+    formulario = FormularioProveedor()
+    if request.method == "POST":
+        if (formulario.validate_on_submit()):
+            print("valido") 
+    return render_template('proveedores/crear-proveedores.html', form = formulario)
 
 @app.route('/proveedores/editar/<id>', methods = ['GET','POST'])
 def editar_proveedor(id = int):
