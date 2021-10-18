@@ -1,25 +1,39 @@
-{% extends 'main/main.html'%}
-{% block content %}
-    <div class="container">
-      <div class="row py-5 justify-content-center">
-        <h2> Proveedores </h2>
-      </div>
-      <div class="row m-2 d-flex">
-        <h4>Editar Proveedor</h4>
-        <form class="form-inline my-2 my-lg-0">
-          <p class="m-4"> NIT: </p>
-          <input class="form-control mr-sm-2" type="search" placeholder="892587501-5" aria-label="Search">
-          <p class="m-4"> Nombre: </p>
-          <input class="form-control mr-sm-2" type="search" placeholder="Michellin Tires" aria-label="Search">
-          <p class="m-4"> Producto: </p>
-          <input class="form-control mr-sm-2" type="search" placeholder="Llanta" aria-label="Search">
-          <button class="btn btn-outline-success m-2 my-sm-0 px-2" type="submit">
-            Guardar cambios
-          </button>
-          <button class="btn btn-outline-danger m-2 my-sm-0 px-2" type="cancel">
-            Cancelar
-          </button>
-        </form>
-      </div>
-    </div>
+{% extends 'main/main.html'%} {% block content %}
+<div class="container">
+  <div class="row py-5 justify-content-center">
+    <h2>Proveedores</h2>
+  </div>
+  <div class="row m-2 d-flex">
+    <h4>Editar Proveedor</h4>
+    <form class="form-inline my-2 my-lg-0">
+      <p class="m-4">NIT:</p>
+      <input
+        class="form-control mr-sm-2"
+        type="search"
+        placeholder="892587501-5"
+        aria-label="Search"
+      />
+      <p class="m-4">Nombre:</p>
+      <input
+        class="form-control mr-sm-2"
+        type="search"
+        placeholder="Michellin Tires"
+        aria-label="Search"
+      />
+      <p class="m-4">Producto:</p>
+      <input
+        class="form-control mr-sm-2"
+        type="search"
+        placeholder="Llanta"
+        aria-label="Search"
+      />
+      <button class="btn btn-outline-success m-2 my-sm-0 px-2" type="submit">
+        Guardar cambios
+      </button>
+      <button class="btn btn-outline-danger m-2 my-sm-0 px-2" type="cancel">
+        Cancelar
+      </button>
+    </form>
+  </div>
+</div>
 {% endblock %}

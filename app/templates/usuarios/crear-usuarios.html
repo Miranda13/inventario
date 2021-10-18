@@ -1,28 +1,43 @@
 {% extends 'main/main.html'%}
 {% block content %}
-    <div class="container">
-      <div class="row py-5 justify-content-center">
-        <h2> Usuarios </h2>
+<div class="container">
+  <div class="row py-5 justify-content-center">
+    <h2> Usuarios </h2>
+  </div>
+  <div class="row">
+    <h4>Crear Usuario</h4>
+  </div>
+  <form>
+    {{ csrf_token }}
+    <div class="form-row m-2">
+      <div class="col">
+        <label class="mx-3"> Nombre: </label>
+        <input class="form-control mr-sm-2" type="string" placeholder="Ingrese nombre ...">
       </div>
-      <div class="row m-2 d-flex">
-        <h4>Crear Usuario</h4>
-        <form class="form-inline my-2 my-lg-0">
-          <p class="m-4"> Nombre: </p>
-          <input class="form-control mr-sm-2" type="string" placeholder="Ingrese nombre ..." aria-label="Search">
-          <p class="m-4"> Correo: </p>
-          <input class="form-control mr-sm-2" type="email" placeholder="Ingrese correo ..." aria-label="Search">
-          <p class="m-4"> Rol: </p>
-          <input class="form-control mr-sm-2" type="search" placeholder="Seleccione rol ..." aria-label="Search">
-          <p class="m-4"> Contraseña: </p>
-          <input class="form-control mr-sm-2" type="password" placeholder="Ingrese contraseña ..." aria-label="Search">
-          <br></br>
-          <button class="btn btn-outline-success m-2 my-sm-0 px-2" type="submit">
-            Crear usuario
-          </button>
-          <button class="btn btn-outline-danger m-2 my-sm-0 px-2" type="submit">
-            Cancelar
-          </button>
-        </form>
+      <div class="col">
+        <label class="mx-3"> Correo: </label>
+        <input class="form-control mr-sm-2" type="email" placeholder="Ingrese correo ...">
       </div>
     </div>
+    <div class="form-row m-2">
+      <div class="col">
+        <label class="mx-3"> Rol: </label>
+        <input class="form-control mr-sm-2" type="search" placeholder="Seleccione rol ...">
+      </div>
+      <div class="col">
+        <label class="mx-3"> Contraseña: </label>
+      <input class="form-control mr-sm-2" type="password" placeholder="Ingrese contraseña ...">
+      </div>
+    </div>
+    <div class="row m-4">
+      <button class="btn btn-outline-success m-2 my-sm-0 px-2" type="submit">
+        Crear usuario
+      </button>
+      <button class="btn btn-outline-danger m-2 my-sm-0 px-2" type="submit">
+        Cancelar
+      </button>
+    </div>
+
+  </form>
+</div>
 {% endblock %}
