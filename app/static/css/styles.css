@@ -2,6 +2,32 @@
 
 :root {
     font-family: 'Libre Franklin', sans-serif;
+    --colorPrincipal: #87C054;
+    --colorSecundario: white;
+}
+
+* {
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.nav {
+    color: white;
+    background-color: var(--colorPrincipal);
+}
+
+.nav:hover {
+    color: white;
+    background-color: var(--colorPrincipal);
+    cursor: pointer;
+}
+
+thead {
+    color: white;
+}
+
+.fila {
+    background-color: var(--colorPrincipal);
 }
 
 svg {
@@ -10,13 +36,14 @@ svg {
 
 header {
     display: flex;
-    background-color: darkkhaki;
+    background-color: var(--colorPrincipal);
 }
 
 header p {
     font-size: 3rem;
     color: white;
-    font-weight: 800;
+    font-weight: 700;
+    margin-left: 5%;
 }
 
 .main-section{
@@ -110,6 +137,15 @@ header p {
 	color: #333;
 	text-decoration: none;
 	}
+
+.error {
+    color: red;
+}
+
+#buttonMain {
+    background-color: var(--colorPrincipal);
+    color: var(--colorSecundario);
+}
 
 @media screen and (max-width: 1024px) {
 	.dashboard-wrapper .panel {
