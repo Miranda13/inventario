@@ -38,7 +38,12 @@ def crear_producto():
 
 @app.route('/productos/editar/<id>', methods = ['GET','POST'])
 def editar_producto(id = int):
-    return render_template('productos/editar-productos.html')
+    formulario = FormularioProducto()
+    producto = [product for product in listar_productos() if product['id'] == id]
+    if request.method == "POST":
+        if (formulario.validate_on_submit()):
+            print("valido")
+    return render_template('productos/editar-productos.html', producto = producto, form = formulario, id = id)
 
 @app.route('/productos/<id>', methods = ['DELETE'])
 def eliminar_producto(id = int):
@@ -60,7 +65,12 @@ def crear_usuario():
 
 @app.route('/usuarios/editar/<id>', methods = ['GET','POST'])
 def editar_usuario(id = int):
-    return render_template('usuarios/editar-usuarios.html')
+    formulario = FormularioUsuario()
+    usuario = [user for user in listar_usuarios() if user['id'] == id]
+    if request.method == "POST":
+        if (formulario.validate_on_submit()):
+            print("valido")
+    return render_template('usuarios/editar-usuarios.html', form = formulario, usuario = usuario)
 
 @app.route('/usuarios/<id>', methods = ['DELETE'])
 def eliminar_usuario(id = int):
@@ -82,7 +92,12 @@ def crear_proveedor():
 
 @app.route('/proveedores/editar/<id>', methods = ['GET','POST'])
 def editar_proveedor(id = int):
-    return render_template('proveedores/editar-proveedores.html')
+    formulario = FormularioProveedor()
+    proveedor = [provider for provider in listar_proveedores() if provider['id'] == id]
+    if request.method == "POST":
+        if (formulario.validate_on_submit()):
+            print("valido")
+    return render_template('proveedores/editar-proveedores.html', form = formulario, proveedor = proveedor)
 
 @app.route('/proveedores/<id>', methods = ['DELETE'])
 def eliminar_proveedor(id = int):

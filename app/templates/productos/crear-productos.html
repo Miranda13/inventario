@@ -15,18 +15,18 @@
         {% endfor %}
       </div>
       <div class="col">
-        {{ form.proveedor.label(class = "mx-3") }}
-        {{ form.proveedor(class="form-control mr-sm-2", placeholder = "Ingrese correo...") }}
-        {% for error in form.proveedor.errors %}
+        {{ form.nombre_proveedor.label(class = "mx-3") }}
+        {{ form.nombre_proveedor(class="form-control mr-sm-2", placeholder = "Ingrese correo...") }}
+        {% for error in form.nombre_proveedor.errors %}
           <span class="error"> {{error}}</span>
         {% endfor %}
       </div>
     </div>
     <div class="form-row m-2">
       <div class="col">
-        {{ form.cantidad_maxima.label(class = "mx-3") }}
-        {{ form.cantidad_maxima(class="form-control mr-sm-2", placeholder = "Cantidad máxima...", type = "number") }}
-        {% for error in form.cantidad_maxima.errors %}
+        {{ form.cantidad_disponible.label(class = "mx-3") }}
+        {{ form.cantidad_disponible(class="form-control mr-sm-2", placeholder = "Cantidad máxima...", type = "number") }}
+        {% for error in form.cantidad_disponible.errors %}
           <span class="error"> {{error}}</span>
         {% endfor %}
       </div>

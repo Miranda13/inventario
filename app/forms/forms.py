@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField, IntegerField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField, IntegerField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, NumberRange
 from wtforms.fields.html5 import EmailField
 from wtforms.widgets import TextArea
@@ -41,10 +41,10 @@ class FormularioProducto(FlaskForm):
         message='** Nombre requerido **'), Length(min=10)])
     nombre_proveedor = SelectField(u'Proveedor', validators=[DataRequired(message='** Proveedor requerido **')], choices=[
                             ('1', 'General motors'), ('2', 'Aero S.A.'), ('3', 'Michelin S.A.')])
-    descripcion = StringField('Descripción', validators=[DataRequired(
+    descripcion = TextAreaField('Descripción', validators=[DataRequired(
         message='** Correo requerido **'), Length(min=10, max=100), TextArea()])
-    cantidadMaxima = IntegerField(u'Cantidad máxima', validators=[DataRequired(
-        message='** Cantidad máxima requerida **'), NumberRange(min=0, max=9999999)])
-    cantidadMinima = IntegerField(u'Cantidad mínima', validators=[DataRequired(
+    cantidad_disponible = IntegerField(u'Cantidad disponible', validators=[DataRequired(
+        message='** Cantidad disponible requerida **'), NumberRange(min=0, max=9999999)])
+    cantidad_minima = IntegerField(u'Cantidad mínima', validators=[DataRequired(
         message='** Cantidad mínima requerida **'), NumberRange(min=0, max=9999999)])
     enviar = SubmitField('Crear producto')

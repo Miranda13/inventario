@@ -3,47 +3,58 @@
   <div class="row py-5 justify-content-center">
     <h2>Editar Productos</h2>
   </div>
-</div>
-<div class="row m-2 d-flex">
-  <form class="form-inline my-2 my-lg-0">
-    <tbody>
-      <tr>
-        <label class="m-4" for="name-product">Nombre:</label>
-        <input id="name-product" class="form-control mr-sm-2" type="text"
-          placeholder="Bugía para moto Suzuki modelo 205 XT" aria-label="Nombre del Producto" />
-      </tr>
-      <tr>
-        <label class="m-4" for="proveedor-product">Proveedor del Producto:</label>
-        <input class="form-control mr-sm-2" type="text" placeholder="Trucks Company®"
-          aria-label="Proveedor del Producto" list="list-proveedores" />
-        <datalist id="list-proveedores">
-          <option>Trucks Company®</option>
-          <option>Aero S.A</option>
-          <option>Chatherraria®</option>
-        </datalist>
-      </tr>
-      <tr>
-        <label class="m-4" for="description-product">Descripción:</label>
-        <textarea id="comentario-product" class="form-control mr-sm-2"
-          placeholder="Bugía para moto Suzuki modelo 205 XT de 55 mm uso prioritario con 215 Hz..."></textarea>
-      </tr>
-      <tr>
-        <label for="contador-maximo">Cantidad Máxima: </label>
-        <input type="number" id="contador-maximo" placeholder="563" />
-
-        <label for="contador-minima">Cantidad Mínima: </label>
-        <input type="number" id="contador-minima" placeholder="77" />
-      </tr>
-      <tr>
-        <button class="btn btn-outline-success m-2 my-sm-0 px-2" type="submit">
-          Editar Producto
-        </button>
-        <button class="btn btn-outline-danger m-2 my-sm-0 px-2" type="cancel">
-          Cancelar
-        </button>
-      </tr>
-    </tbody>
+  <form action="#" name="form" method="POST" novalidate>
+    {{ csrf_token }}
+    {{ form.hidden_tag() }}
+    <div class="form-row m-2">
+      <div class="col">
+        {{ form.nombre_producto.label(class = "mx-3") }}
+        {{ form.nombre_producto(class="form-control mr-sm-2", value = 's%producto["id"]' ) }}
+        {% for error in form.nombre_producto.errors %}
+          <span class="error"> {{error}}</span>
+        {% endfor %}
+      </div>
+      <div class="col">
+        {{ form.nombre_proveedor.label(class = "mx-3") }}
+        {{ form.nombre_proveedor(class="form-control mr-sm-2") }}
+        {% for error in form.nombre_proveedor.errors %}
+          <span class="error"> {{error}}</span>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="form-row m-2">
+      <div class="col">
+        {{ form.cantidad_disponible.label(class = "mx-3") }}
+        {{ form.cantidad_disponible(class="form-control mr-sm-2", type = "number") }}
+        {% for error in form.cantidad_disponible.errors %}
+          <span class="error"> {{error}}</span>
+        {% endfor %}
+      </div>
+      <div class="col">
+        {{ form.cantidad_minima.label(class = "mx-3") }}
+        {{ form.cantidad_minima(class="form-control mr-sm-2", type = "number") }}
+        {% for error in form.cantidad_minima.errors %}
+          <span class="error"> {{error}}</span>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="form-row m-2">
+      <div class="col">
+        {{ form.descripcion.label(class = "mx-3") }}
+        {{ form.descripcion(class="form-control mr-sm-2") }}
+        {% for error in form.descripcion.errors %}
+          <span class="error"> {{error}}</span>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="row m-4">
+      {{ form.enviar(class = "btn btn-outline-success m-2 my-sm-0 px-2") }}
+      <button class="btn btn-outline-danger m-2 my-sm-0 px-2">
+        Cancelar
+      </button>
+    </div>
   </form>
 </div>
+
 
 {% endblock %}

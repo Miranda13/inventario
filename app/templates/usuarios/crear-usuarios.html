@@ -11,15 +11,13 @@
     <div class="form-row m-2">
       <div class="col">
         {{ form.nombre_usuario.label(class = "mx-3") }} {{
-        form.nombre_usuario(class="form-control mr-sm-2", placeholder = "Ingrese
-        nombre...") }} {% for error in form.nombre_usuario.errors %}
+        form.nombre_usuario(class="form-control mr-sm-2", placeholder = "Ingrese nombre...") }} {% for error in form.nombre_usuario.errors %}
         <span class="error"> {{error}}</span>
         {% endfor %}
       </div>
       <div class="col">
         {{ form.correo.label(class = "mx-3") }} {{
-        form.correo(class="form-control mr-sm-2", placeholder = "Ingrese
-        correo...") }} {% for error in form.correo.errors %}
+        form.correo(class="form-control mr-sm-2", placeholder = "Ingrese correo...") }} {% for error in form.correo.errors %}
         <span class="error"> {{error}}</span>
         {% endfor %}
       </div>
@@ -27,7 +25,7 @@
     <div class="form-row m-2">
       <div class="col">
         {{ form.rol.label(class = "mx-3") }} {{ form.rol(class="form-control
-        mr-sm-2", placeholder = "Selecciones rol...") }} {% for error in
+        mr-sm-2", placeholder = "Seleccione rol...") }} {% for error in
         form.rol.errors %}
         <span class="error"> {{error}}</span>
         {% endfor %}
