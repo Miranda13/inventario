@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect
-from forms.forms import FormularioUsuario, FormularioProducto, FormularioProveedor
-import os 
+from utils import *
+from forms.forms import *
+import os
+import json
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -24,7 +26,7 @@ def dashboard():
 
 @app.route('/productos')
 def productos():
-    return render_template('productos/productos.html')
+    return render_template('productos/productos.html', productos = listar_productos())
 
 @app.route('/productos/crear', methods = ['GET','POST'])
 def crear_producto():
@@ -46,7 +48,7 @@ def eliminar_producto(id = int):
 
 @app.route('/usuarios')
 def usuarios():
-    return render_template('usuarios/usuarios.html')
+    return render_template('usuarios/usuarios.html', usuarios = listar_usuarios())
 
 @app.route('/usuarios/crear', methods = ['GET','POST'])
 def crear_usuario():
@@ -68,7 +70,7 @@ def eliminar_usuario(id = int):
 
 @app.route('/proveedores')
 def proveedores():
-    return render_template('proveedores/proveedores.html')
+    return render_template('proveedores/proveedores.html', proveedores = listar_proveedores())
 
 @app.route('/proveedores/crear', methods = ['GET','POST'])
 def crear_proveedor():

@@ -13,7 +13,7 @@ class FormularioIngreso(FlaskForm):
         message='** Es necesario aceptar la política de privacidad **')])
 
 class FormularioUsuario(FlaskForm):
-    nombre = StringField(u'Nombre', validators=[DataRequired(
+    nombre_usuario = StringField(u'Nombre', validators=[DataRequired(
         message='** Nombre requerido **'), Length(min=10)])
     clave = PasswordField(u'Contraseña', validators=[DataRequired(
         message='** Contraseña requerida **'), Length(min=8)])
@@ -25,7 +25,7 @@ class FormularioUsuario(FlaskForm):
 
 
 class FormularioProveedor(FlaskForm):
-    nombre = StringField(u'Nombre', validators=[DataRequired(
+    nombre_proveedor = StringField(u'Nombre', validators=[DataRequired(
         message='** Nombre requerido **'), Length(min=8)])
     nit = StringField(u'NIT', validators=[DataRequired(
         message='** NIT requerido **'), Length(min=5)])
@@ -37,9 +37,9 @@ class FormularioProveedor(FlaskForm):
 
 
 class FormularioProducto(FlaskForm):
-    producto = StringField('Nombre', validators=[DataRequired(
+    nombre_producto = StringField('Nombre', validators=[DataRequired(
         message='** Nombre requerido **'), Length(min=10)])
-    proveedor = SelectField(u'Proveedor', validators=[DataRequired(message='** Proveedor requerido **')], choices=[
+    nombre_proveedor = SelectField(u'Proveedor', validators=[DataRequired(message='** Proveedor requerido **')], choices=[
                             ('1', 'General motors'), ('2', 'Aero S.A.'), ('3', 'Michelin S.A.')])
     descripcion = StringField('Descripción', validators=[DataRequired(
         message='** Correo requerido **'), Length(min=10, max=100), TextArea()])

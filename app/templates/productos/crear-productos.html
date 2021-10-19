@@ -8,9 +8,9 @@
     {{ form.hidden_tag() }}
     <div class="form-row m-2">
       <div class="col">
-        {{ form.producto.label(class = "mx-3") }}
-        {{ form.producto(class="form-control mr-sm-2", placeholder = "Ingrese nombre del producto...") }}
-        {% for error in form.producto.errors %}
+        {{ form.nombre_producto.label(class = "mx-3") }}
+        {{ form.nombre_producto(class="form-control mr-sm-2", placeholder = "Ingrese nombre del producto...") }}
+        {% for error in form.nombre_producto.errors %}
           <span class="error"> {{error}}</span>
         {% endfor %}
       </div>
@@ -24,16 +24,16 @@
     </div>
     <div class="form-row m-2">
       <div class="col">
-        {{ form.cantidadMaxima.label(class = "mx-3") }}
-        {{ form.cantidadMaxima(class="form-control mr-sm-2", placeholder = "Cantidad máxima...", type = "number") }}
-        {% for error in form.cantidadMaxima.errors %}
+        {{ form.cantidad_maxima.label(class = "mx-3") }}
+        {{ form.cantidad_maxima(class="form-control mr-sm-2", placeholder = "Cantidad máxima...", type = "number") }}
+        {% for error in form.cantidad_maxima.errors %}
           <span class="error"> {{error}}</span>
         {% endfor %}
       </div>
       <div class="col">
-        {{ form.cantidadMinima.label(class = "mx-3") }}
-        {{ form.cantidadMinima(class="form-control mr-sm-2", placeholder = "Cantidad mínima...", type = "number") }}
-        {% for error in form.cantidadMinima.errors %}
+        {{ form.cantidad_minima.label(class = "mx-3") }}
+        {{ form.cantidad_minima(class="form-control mr-sm-2", placeholder = "Cantidad mínima...", type = "number") }}
+        {% for error in form.cantidad_minima.errors %}
           <span class="error"> {{error}}</span>
         {% endfor %}
       </div>

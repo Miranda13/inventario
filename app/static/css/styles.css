@@ -6,6 +6,11 @@
     --colorSecundario: white;
 }
 
+* {
+    margin: 0px;
+    box-sizing: border-box;
+}
+
 .nav {
     color: white;
     background-color: var(--colorPrincipal);
