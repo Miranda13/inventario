@@ -9,8 +9,9 @@ class FormularioIngreso(FlaskForm):
         message='** Correo requerido **'), Email()])
     clave = PasswordField(u'Contraseña', validators=[DataRequired(
         message='** Contraseña requerida **'), Length(min=8)])
-    privacidad = BooleanField('',validator = [DataRequired(
+    privacidad = BooleanField('',validators = [DataRequired(
         message='** Es necesario aceptar la política de privacidad **')])
+    enviar = SubmitField(u'Ingresar')
 
 class FormularioUsuario(FlaskForm):
     nombre_usuario = StringField(u'Nombre', validators=[DataRequired(

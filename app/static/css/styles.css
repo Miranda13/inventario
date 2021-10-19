@@ -99,6 +99,10 @@ header p {
     margin: 5px 0 25px;
 }
 
+#check {
+    color: white;
+}
+
 .panel img{
     width: 200xp;
     height: 200px;
