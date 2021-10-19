@@ -10,7 +10,8 @@ app.secret_key = os.urandom(24)
 @app.route('/', methods = ['GET', 'POST'])
 def login():
     if request.method == 'GET':
-        return render_template('login/login.html')
+        formulario = FormularioIngreso()
+        return render_template('login/login.html', form = formulario)
     if request.method == 'POST':
         return redirect("main")
 
@@ -39,7 +40,7 @@ def crear_producto():
 @app.route('/productos/editar/<id>', methods = ['GET','POST'])
 def editar_producto(id = int):
     formulario = FormularioProducto()
-    producto = [product for product in listar_productos() if product['id'] == id]
+    producto = [product for product in listar_productos() if product['id'] == int(id)]
     if request.method == "POST":
         if (formulario.validate_on_submit()):
             print("valido")
