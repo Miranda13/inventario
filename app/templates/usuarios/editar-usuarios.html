@@ -1,25 +1,45 @@
 {% extends 'main/main.html'%}
 {% block content %}
-    <div class="container">
-      <div class="row py-5 justify-content-center">
-        <h2> Usuarios </h2>
+<div class="container">
+  <div class="row py-5 justify-content-center">
+    <h2> Editar usuario </h2>
+  </div>
+  <form action="#" name="form" method="POST" novalidate>
+    {{ csrf_token }} {{ form.hidden_tag() }}
+    <div class="form-row m-2">
+      <div class="col">
+        {{ form.nombre_usuario.label(class = "mx-3") }} {{
+        form.nombre_usuario(class="form-control mr-sm-2", placeholder = "Ingrese nombre...") }} {% for error in form.nombre_usuario.errors %}
+        <span class="error"> {{error}}</span>
+        {% endfor %}
       </div>
-      <div class="row m-2 d-flex">
-        <h4>Editar Usuario</h4>
-        <form class="form-inline my-2 my-lg-0">
-          <p class="m-4"> Nombre: </p>
-          <input class="form-control mr-sm-2" type="search" placeholder="Jhon Jairo Martinez" aria-label="Search">
-          <p class="m-4"> Correo: </p>
-          <input class="form-control mr-sm-2" type="search" placeholder="jjmartinez@gmail.com" aria-label="Search">
-          <p class="m-4"> Rol: </p>
-          <input class="form-control mr-sm-2" type="search" placeholder="Usuario final" aria-label="Search">
-          <button class="btn btn-outline-success m-2 my-sm-0 px-2" type="submit">
-            Guardar cambios
-          </button>
-          <button class="btn btn-outline-danger m-2 my-sm-0 px-2" type="cancel">
-            Cancelar
-          </button>
-        </form>
+      <div class="col">
+        {{ form.correo.label(class = "mx-3") }} {{
+        form.correo(class="form-control mr-sm-2", placeholder = "Ingrese correo...") }} {% for error in form.correo.errors %}
+        <span class="error"> {{error}}</span>
+        {% endfor %}
       </div>
     </div>
+    <div class="form-row m-2">
+      <div class="col">
+        {{ form.rol.label(class = "mx-3") }} {{ form.rol(class="form-control
+        mr-sm-2", placeholder = "Seleccione rol...") }} {% for error in
+        form.rol.errors %}
+        <span class="error"> {{error}}</span>
+        {% endfor %}
+      </div>
+      <div class="col">
+        {{ form.clave.label(class = "mx-3") }} {{ form.clave(class="form-control
+        mr-sm-2", placeholder = "Ingrese contraseña...") }} {% for error in
+        form.clave.errors %}
+        <span class="error"> {{error}}</span>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="row m-4">
+      {{ form.enviar(class = "btn btn-outline-success m-2 my-sm-0 px-2") }}
+      <button class="btn btn-outline-danger m-2 my-sm-0 px-2">Cancelar</button>
+    </div>
+  </form>
+</div>
 {% endblock %}
