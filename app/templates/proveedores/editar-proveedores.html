@@ -1,0 +1,49 @@
+{% extends 'main/main.html'%} {% block content %}
+<div class="container">
+  <div class="row py-5 justify-content-center">
+    <h2>Editar proveedor</h2>
+  </div>
+  <form action="#" name="form" method="POST" novalidate>
+    {{ csrf_token }}
+    {{ form.hidden_tag() }}
+    <div class="form-row m-2">
+      <div class="col">
+        {{ form.nombre_proveedor.label(class = "mx-3") }}
+        {{ form.nombre_proveedor(class="form-control mr-sm-2",   placeholder = "Ingrese nombre...") }}
+        {% for error in form.nombre_proveedor.errors %}
+          <span class="error"> {{error}}</span>
+        {% endfor %}
+      </div>
+      <div class="col">
+        {{ form.correo.label(class = "mx-3") }}
+        {{ form.correo(class="form-control mr-sm-2",   placeholder = "Ingrese correo...") }}
+        {% for error in form.correo.errors %}
+          <span class="error"> {{error}}</span>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="form-row m-2">
+      <div class="col">
+        {{ form.nit.label(class = "mx-3") }}
+        {{ form.nit(class="form-control mr-sm-2",   placeholder = "Ingrese NIT...") }}
+        {% for error in form.nit.errors %}
+          <span class="error"> {{error}}</span>
+        {% endfor %}
+      </div>
+      <div class="col">
+        {{ form.telefono.label(class = "mx-3") }}
+        {{ form.telefono(class="form-control mr-sm-2",   placeholder = "Ingrese teléfono...") }}
+        {% for error in form.telefono.errors %}
+          <span class="error"> {{error}}</span>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="row m-4">
+      {{ form.enviar(class = "btn btn-outline-success m-2 my-sm-0 px-2") }}
+      <button class="btn btn-outline-danger m-2 my-sm-0 px-2">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock %}
