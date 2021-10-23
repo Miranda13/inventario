@@ -21,7 +21,7 @@ def main():
 
 @app.route('/dashboard')
 def dashboard():
-    return render_template('dashboard/dashboard.html')
+    return render_template('dashboard/dashboard.html', productos=listar_productos())
 
 ####--------------CRUD PRODUCTOS-----------------------####
 
