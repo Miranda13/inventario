@@ -1,3 +1,6 @@
+import sqlite3
+from sqlite3 import Error
+
 usuarios = [
     {
         "id": 1,
@@ -67,15 +70,69 @@ productos = [
     }
 ]
 
+db = 'inventario.db'
 
-def buscar_usuario(id):
-    return "Usuario no encontrado"
+def obtener_usuarios():
+    try:
+        with sqlite3.connect(db) as con:
+            con.row_factory = sqlite3.Row 
+            cur = con.cursor()
+            cur.execute("SELECT * FROM  usuarios")
+            row = cur.fetchall()
+            return row
+    except  Error:
+        print(Error)
+        return Error
 
-def listar_usuarios():
-    return usuarios
+def obtener_usuario(id):
+    try:
+        with sqlite3.connect(db) as con:
+            con.row_factory = sqlite3.Row
+            cur = con.cursor()
+            cur.execute("SELECT * FROM usuarios WHERE usuario_id = ?", [id])
+            row = cur.fetchone()
+            return row
+    except Error:
+        print(Error)
+        return Error
 
-def listar_proveedores():
-    return proveedores
+def quitar_usuario(id):
+    try:
+        with sqlite3.connect(db) as con:
+            con.row_factory = sqlite3.Row
+            cur = con.cursor()
+            cur.execute("DELETE FROM usuarios WHERE usuario_id = ?", [id])
+            return con.total_changes > 0
+    except Error:
+        print(Error)
+        return False
 
-def listar_productos():
-    return productos
+def actualizar_usuario(form, id):
+    nombre = form.nombre_usuario.data
+    clave = form.clave.data
+    correo = form.correo.data
+    rol = form.rol.data
+    try:
+        with sqlite3.connect(db) as con:
+            cur = con.cursor()
+            cur.execute("UPDATE usuarios SET nombre=?, clave=?, correo=?, rol=? WHERE usuario_id = ?", [nombre, clave, correo, rol, id] )
+            con.commit()
+            return con.total_changes > 0
+    except Error:
+        print(Error)
+        return False
+
+def insertar_usuario(form):
+    nombre = form.nombre_usuario.data
+    clave = form.clave.data
+    correo = form.correo.data
+    rol = form.rol.data
+    try:
+        with sqlite3.connect(db) as con:
+            cur = con.cursor()
+            cur.execute("INSERT INTO usuarios(nombre, clave, correo, rol) VALUES (?,?,?,?)", (nombre, clave, correo, rol) )
+            con.commit()
+            return True
+    except Error:
+        print(Error)
+        return False
