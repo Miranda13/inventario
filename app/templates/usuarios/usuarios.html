@@ -34,17 +34,17 @@
       <tbody>
         {% for usuario in usuarios %}
           <tr>
-            <td>{{ usuario["id"] }}</td>
-            <td>{{ usuario["nombre_usuario"] }}</td>
+            <td>{{ usuario["usuario_id"] }}</td>
+            <td>{{ usuario["nombre"] }}</td>
             <td>{{ usuario["rol"] }}</td>
             <td>{{ usuario["correo"] }}</td>
             <td>
-              <a href="{{ '/usuarios/editar/%s'%usuario['id'] }}">
+              <a href="{{ '/usuarios/editar/%s'%usuario['usuario_id'] }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 8 8">
                   <path d="M6 0l-1 1 2 2 1-1-2-2zm-2 2l-4 4v2h2l4-4-2-2z" />
                 </svg>
               </a>
-              <button type="button" class="btn btn-link" data-toggle="modal" data-target="#eliminarModal">
+              <button type="button" class="btn btn-link" onclick="" data-toggle="modal" data-target="#eliminarModal">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 8 8">
                   <path
                     d="M3 0c-.55 0-1 .45-1 1h-1c-.55 0-1 .45-1 1h7c0-.55-.45-1-1-1h-1c0-.55-.45-1-1-1h-1zm-2 3v4.81c0 .11.08.19.19.19h4.63c.11 0 .19-.08.19-.19v-4.81h-1v3.5c0 .28-.22.5-.5.5s-.5-.22-.5-.5v-3.5h-1v3.5c0 .28-.22.5-.5.5s-.5-.22-.5-.5v-3.5h-1z" />
@@ -82,7 +82,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-danger">Eliminar usuario</button>
+          <button id="eliminarUsuario" type="button" class="btn btn-danger">Eliminar usuario</button>
         </div>
       </div>
     </div>
