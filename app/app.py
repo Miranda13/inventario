@@ -46,7 +46,7 @@ def editar_producto(id = int):
             print("valido")
     return render_template('productos/editar-productos.html', producto = producto, form = formulario, id = id)
 
-@app.route('/productos/<id>', methods = ['DELETE'])
+@app.route('/productos/eliminar/<id>', methods = ['DELETE'])
 def eliminar_producto(id = int):
     return 1
 
@@ -54,28 +54,45 @@ def eliminar_producto(id = int):
 
 @app.route('/usuarios')
 def usuarios():
-    return render_template('usuarios/usuarios.html', usuarios = listar_usuarios())
+    return render_template('usuarios/usuarios.html', usuarios = obtener_usuarios())
 
 @app.route('/usuarios/crear', methods = ['GET','POST'])
 def crear_usuario():
     formulario = FormularioUsuario()
     if request.method == "POST":
         if (formulario.validate_on_submit()):
-            print("valido") 
+            if insertar_usuario(formulario):
+                return "Guardado satisfactoriamente"
+            else:
+                return "No se pudo guardar"
     return render_template('usuarios/crear-usuarios.html', form = formulario)
 
 @app.route('/usuarios/editar/<id>', methods = ['GET','POST'])
-def editar_usuario(id = int):
+def editar_usuario(id):
     formulario = FormularioUsuario()
-    usuario = [user for user in listar_usuarios() if user['id'] == id]
+    try:
+        usuario = obtener_usuario(int(id))
+        if usuario is None:
+            return "El usuario no existe"
+    except ValueError:
+        return "Formato inválido de id"
     if request.method == "POST":
         if (formulario.validate_on_submit()):
-            print("valido")
+            if actualizar_usuario(formulario,id):
+                return "Usuario actualizado"
+            else:
+                return "El usuario no se pudo actualizar"
     return render_template('usuarios/editar-usuarios.html', form = formulario, usuario = usuario)
 
-@app.route('/usuarios/<id>', methods = ['DELETE'])
-def eliminar_usuario(id = int):
-    return 1
+@app.route('/usuarios/eliminar/<id>')
+def eliminar_usuario(id):
+    try:
+        if quitar_usuario(int(id)):
+            return "Usuario eliminado"
+        else:
+            return "El usuario no existe"
+    except ValueError:
+        return "Formato inválido de id"
 
 ####--------------CRUD PROVEEDORES-----------------------####
 
@@ -100,7 +117,7 @@ def editar_proveedor(id = int):
             print("valido")
     return render_template('proveedores/editar-proveedores.html', form = formulario, proveedor = proveedor)
 
-@app.route('/proveedores/<id>', methods = ['DELETE'])
+@app.route('/proveedores/eliminar/<id>')
 def eliminar_proveedor(id = int):
     return 1
 
