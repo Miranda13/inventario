@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 from utils import *
 from forms.forms import *
 import os
 import json
+
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -27,28 +28,45 @@ def dashboard():
 
 @app.route('/productos')
 def productos():
-    return render_template('productos/productos.html', productos = listar_productos())
+    return render_template('productos/productos.html', productos = obtener_productos())
 
 @app.route('/productos/crear', methods = ['GET','POST'])
 def crear_producto():
     formulario = FormularioProducto()
     if request.method == "POST":
         if (formulario.validate_on_submit()):
-            print("valido") 
+            if insertar_producto(formulario):
+                return redirect(url_for('productos'))
+            else:
+                return "No se pudo guardar"
     return render_template('productos/crear-productos.html', form = formulario)
 
 @app.route('/productos/editar/<id>', methods = ['GET','POST'])
 def editar_producto(id = int):
     formulario = FormularioProducto()
-    producto = [product for product in listar_productos() if product['id'] == int(id)]
+    try:
+        producto = obtener_producto(int(id))
+        if producto is None:
+            return "El producto no existe"
+    except ValueError:
+        return "Formato inválido de id"
     if request.method == "POST":
         if (formulario.validate_on_submit()):
-            print("valido")
-    return render_template('productos/editar-productos.html', producto = producto, form = formulario, id = id)
+            if actualizar_producto(formulario,id):
+                return redirect(url_for('productos'))
+            else:
+                return "El producto no se pudo actualizar"
+    return render_template('productos/editar-productos.html', form = formulario, producto = producto)
 
 @app.route('/productos/eliminar/<id>', methods = ['DELETE'])
 def eliminar_producto(id = int):
-    return 1
+    try:
+        if quitar_producto(int(id)):
+            return redirect(url_for('productos'))
+        else:
+            return "El producto no existe"
+    except ValueError:
+        return "Formato inválido de id"
 
 ####--------------CRUD USUARIOS-----------------------####
 
@@ -62,7 +80,7 @@ def crear_usuario():
     if request.method == "POST":
         if (formulario.validate_on_submit()):
             if insertar_usuario(formulario):
-                return "Guardado satisfactoriamente"
+                return redirect(url_for('usuarios'))
             else:
                 return "No se pudo guardar"
     return render_template('usuarios/crear-usuarios.html', form = formulario)
@@ -79,7 +97,7 @@ def editar_usuario(id):
     if request.method == "POST":
         if (formulario.validate_on_submit()):
             if actualizar_usuario(formulario,id):
-                return "Usuario actualizado"
+                return redirect(url_for('usuarios'))
             else:
                 return "El usuario no se pudo actualizar"
     return render_template('usuarios/editar-usuarios.html', form = formulario, usuario = usuario)
@@ -88,7 +106,7 @@ def editar_usuario(id):
 def eliminar_usuario(id):
     try:
         if quitar_usuario(int(id)):
-            return "Usuario eliminado"
+            return redirect(url_for('usuarios'))
         else:
             return "El usuario no existe"
     except ValueError:
@@ -106,7 +124,7 @@ def crear_proveedor():
     if request.method == "POST":
         if (formulario.validate_on_submit()):
             if insertar_proveedor(formulario):
-                return "Guardado satisfactoriamente"
+                return redirect(url_for('proveedores'))
             else:
                 return "No se pudo guardar"
     return render_template('proveedores/crear-proveedores.html', form = formulario)
@@ -114,15 +132,29 @@ def crear_proveedor():
 @app.route('/proveedores/editar/<id>', methods = ['GET','POST'])
 def editar_proveedor(id = int):
     formulario = FormularioProveedor()
-    proveedor = [provider for provider in obtener_proveedores() if provider['id'] == id]
+    try:
+        proveedor = obtener_proveedor(int(id))
+        if proveedor is None:
+            return "El proveedor no existe"
+    except ValueError:
+        return "Formato inválido de id"
     if request.method == "POST":
         if (formulario.validate_on_submit()):
-            print("valido")
+            if actualizar_proveedor(formulario,id):
+                return redirect(url_for('proveedores'))
+            else:
+                return "El proveedor no se pudo actualizar"
     return render_template('proveedores/editar-proveedores.html', form = formulario, proveedor = proveedor)
 
 @app.route('/proveedores/eliminar/<id>')
 def eliminar_proveedor(id = int):
-    return 1
+    try:
+        if quitar_proveedor(int(id)):
+            return redirect(url_for('proveedores'))
+        else:
+            return "El proveedor no existe"
+    except ValueError:
+        return "Formato inválido de id"
 
 if __name__ == '__main__':
     app.run(debug = True, port = 8000)

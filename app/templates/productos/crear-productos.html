@@ -4,20 +4,12 @@
     <h2>Crear producto </h2>
   </div>
   <form action="/productos/crear" name="form" method="POST" novalidate>
-    {{ csrf_token }}
-    {{ form.hidden_tag() }}
+    {{ csrf_token }} {{ form.hidden_tag() }}
     <div class="form-row m-2">
       <div class="col">
         {{ form.nombre_producto.label(class = "mx-3") }}
         {{ form.nombre_producto(class="form-control mr-sm-2", placeholder = "Ingrese nombre del producto...") }}
         {% for error in form.nombre_producto.errors %}
-          <span class="error"> {{error}}</span>
-        {% endfor %}
-      </div>
-      <div class="col">
-        {{ form.nombre_proveedor.label(class = "mx-3") }}
-        {{ form.nombre_proveedor(class="form-control mr-sm-2", placeholder = "Ingrese correo...") }}
-        {% for error in form.nombre_proveedor.errors %}
           <span class="error"> {{error}}</span>
         {% endfor %}
       </div>

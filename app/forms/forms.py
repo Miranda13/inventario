@@ -40,10 +40,10 @@ class FormularioProveedor(FlaskForm):
 class FormularioProducto(FlaskForm):
     nombre_producto = StringField('Nombre', validators=[DataRequired(
         message='** Nombre requerido **'), Length(min=10)])
-    nombre_proveedor = SelectField(u'Proveedor', validators=[DataRequired(message='** Proveedor requerido **')], choices=[
-                            ('1', 'General motors'), ('2', 'Aero S.A.'), ('3', 'Michelin S.A.')])
-    descripcion = TextAreaField('Descripción', validators=[DataRequired(
-        message='** Correo requerido **'), Length(min=10, max=100), TextArea()])
+    #nombre_proveedor = SelectField(u'Proveedor', validators=[DataRequired(message='** Proveedor requerido **')], choices=[
+                            #('1', 'General motors'), ('2', 'Aero S.A.'), ('3', 'Michelin S.A.')])
+    descripcion = StringField('Descripción', validators=[DataRequired(
+        message='** Correo requerido **'), Length(min=10, max=100)])
     cantidad_disponible = IntegerField(u'Cantidad disponible', validators=[DataRequired(
         message='** Cantidad disponible requerida **'), NumberRange(min=0, max=9999999)])
     cantidad_minima = IntegerField(u'Cantidad mínima', validators=[DataRequired(
