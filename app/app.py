@@ -98,20 +98,23 @@ def eliminar_usuario(id):
 
 @app.route('/proveedores')
 def proveedores():
-    return render_template('proveedores/proveedores.html', proveedores = listar_proveedores())
+    return render_template('proveedores/proveedores.html', proveedores = obtener_proveedores())
 
 @app.route('/proveedores/crear', methods = ['GET','POST'])
 def crear_proveedor():
     formulario = FormularioProveedor()
     if request.method == "POST":
         if (formulario.validate_on_submit()):
-            print("valido") 
+            if insertar_proveedor(formulario):
+                return "Guardado satisfactoriamente"
+            else:
+                return "No se pudo guardar"
     return render_template('proveedores/crear-proveedores.html', form = formulario)
 
 @app.route('/proveedores/editar/<id>', methods = ['GET','POST'])
 def editar_proveedor(id = int):
     formulario = FormularioProveedor()
-    proveedor = [provider for provider in listar_proveedores() if provider['id'] == id]
+    proveedor = [provider for provider in obtener_proveedores() if provider['id'] == id]
     if request.method == "POST":
         if (formulario.validate_on_submit()):
             print("valido")

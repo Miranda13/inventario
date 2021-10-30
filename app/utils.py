@@ -70,7 +70,7 @@ productos = [
     }
 ]
 
-db = 'inventario.db'
+db = 'app\inventario.db'
 
 def obtener_usuarios():
     try:
@@ -131,6 +131,69 @@ def insertar_usuario(form):
         with sqlite3.connect(db) as con:
             cur = con.cursor()
             cur.execute("INSERT INTO usuarios(nombre, clave, correo, rol) VALUES (?,?,?,?)", (nombre, clave, correo, rol) )
+            con.commit()
+            return True
+    except Error:
+        print(Error)
+        return False
+
+def obtener_proveedores():
+    try:
+        with sqlite3.connect(db) as con:
+            con.row_factory = sqlite3.Row 
+            cur = con.cursor()
+            cur.execute("SELECT * FROM  proveedores")
+            row = cur.fetchall()
+            return row
+    except  Error:
+        print(Error)
+        return Error
+
+def obtener_proveedor(id):
+    try:
+        with sqlite3.connect(db) as con:
+            con.row_factory = sqlite3.Row
+            cur = con.cursor()
+            cur.execute("SELECT * FROM proveedores WHERE proveedor_id = ?", [id])
+            row = cur.fetchone()
+            return row
+    except Error:
+        print(Error)
+        return Error
+
+def quitar_proveedor(id):
+    try:
+        with sqlite3.connect(db) as con:
+            con.row_factory = sqlite3.Row
+            cur = con.cursor()
+            cur.execute("DELETE FROM proveedores WHERE proveedor_id = ?", [id])
+            return con.total_changes > 0
+    except Error:
+        print(Error)
+        return False
+
+def actualizar_proveedor(form, id):
+    nombre = form.nombre_proveedor.data
+    telefono = form.telefono.data
+    correo = form.correo.data
+    try:
+        with sqlite3.connect(db) as con:
+            cur = con.cursor()
+            cur.execute("UPDATE proveedores SET nombre=?, telefono=?, correo=? WHERE proveedor_id = ?", [nombre, telefono, correo] )
+            con.commit()
+            return con.total_changes > 0
+    except Error:
+        print(Error)
+        return False
+
+def insertar_proveedor(form):
+    nombre = form.nombre_proveedor.data
+    telefono = form.telefono.data
+    correo = form.correo.data
+    try:
+        with sqlite3.connect(db) as con:
+            cur = con.cursor()
+            cur.execute("INSERT INTO proveedor (nombre, telefono, correo) VALUES (?,?,?)", (nombre, telefono, correo) )
             con.commit()
             return True
     except Error:
