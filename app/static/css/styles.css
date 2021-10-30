@@ -8,8 +8,10 @@
 
 * {
     margin: 0px;
+    padding: 0px;
     box-sizing: border-box;
 }
+
 
 .nav {
     color: white;
@@ -24,6 +26,10 @@
 
 thead {
     color: white;
+}
+
+li {
+    width: 100%;
 }
 
 .fila {
@@ -44,6 +50,7 @@ header p {
     color: white;
     font-weight: 700;
     margin-left: 5%;
+    margin-top: 3%;
 }
 
 .main-section{
@@ -149,6 +156,18 @@ header p {
 #buttonMain {
     background-color: var(--colorPrincipal);
     color: var(--colorSecundario);
+}
+
+.navbar {
+    padding: 0px;
+}
+
+
+@media (max-width: 540px) {
+	header p {
+        display: none;
+        z-index: 1;
+    }
 }
 
 @media screen and (max-width: 1024px) {

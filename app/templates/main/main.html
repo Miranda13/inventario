@@ -13,30 +13,45 @@
 
 <body>
   <header class="d-flex justify-content-around">
-    <p class="d-flex align-items-center pl-3">Suzuki Motor Inventario</p>
+    <p class="align-items-center pl-3">Suzuki Motor Inventario</p>
     <img class="ml-auto" src="../../static/img/motos.jpeg" alt="" />
   </header>
 
   <div class="row">
     <div class="col-2">
-      <ul class="nav nav-tabs flex-column" id="myTab" role="tablist">
-        <li class="nav-item">
-          <a class="nav-link" id="home-tab" data-toggle="tab" role="tab"
-            onclick="window.location.href='/proveedores'">Proveedores</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="profile-tab" data-toggle="tab" role="tab"
-            onclick="window.location.href='/productos'">Productos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="dasboard-tab" data-toggle="tab" role="tab"
-            onclick="window.location.href='/dashboard'">Administrativo</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="contact-tab" data-toggle="tab" role="tab"
-            onclick="window.location.href='/usuarios'">Usuarios</a>
-        </li>
-      </ul>
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggler">
+          <ul class="nav nav-tabs flex-column" id="myTab" role="tablist">
+            {% if rol == "superAdmin" or rol == "usuarioFinal" %}
+              <li class="nav-item">
+                <a class="nav-link" id="home-tab" data-toggle="tab" role="tab"
+                  onclick="window.location.href='/proveedores'">Proveedores</a>
+              </li>
+            {% endif %}
+            {% if rol == "superAdmin" or rol == "usuarioFinal" %}
+              <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" role="tab"
+                  onclick="window.location.href='/productos'">Productos</a>
+              </li>
+            {% endif %}
+            {% if rol == "superAdmin" or rol == "administrador" %}
+              <li class="nav-item">
+                <a class="nav-link" id="contact-tab" data-toggle="tab" role="tab"
+                  onclick="window.location.href='/usuarios'">Usuarios</a>
+              </li>
+            {% endif %}
+            {% if rol == "superAdmin" or rol == "administrador" %}
+              <li class="nav-item">
+                <a class="nav-link" id="dasboard-tab" data-toggle="tab" role="tab"
+                  onclick="window.location.href='/dashboard'">Administrativo</a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
     </div>
     <div class="col">{% block content %} {% endblock %}</div>
   </div>
