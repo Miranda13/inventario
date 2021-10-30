@@ -70,7 +70,7 @@ productos = [
     }
 ]
 
-db = 'app\inventario.db'
+db = 'inventario.db'
 
 def obtener_usuarios():
     try:
@@ -190,10 +190,11 @@ def insertar_proveedor(form):
     nombre = form.nombre_proveedor.data
     telefono = form.telefono.data
     correo = form.correo.data
+    nit = form.nit.data
     try:
         with sqlite3.connect(db) as con:
             cur = con.cursor()
-            cur.execute("INSERT INTO proveedor (nombre, telefono, correo) VALUES (?,?,?)", (nombre, telefono, correo) )
+            cur.execute("INSERT INTO proveedores (nombre, telefono, correo, nit) VALUES (?,?,?,?)", (nombre, telefono, correo, nit) )
             con.commit()
             return True
     except Error:
