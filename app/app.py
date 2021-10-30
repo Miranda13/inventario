@@ -27,7 +27,11 @@ def dashboard():
 
 @app.route('/productos')
 def productos():
-    return render_template('productos/productos.html', productos = listar_productos())
+    return render_template('productos/productos.html',
+                            productos=obtener_productos_dash(), 
+                            cant_user=cantidad_usuario(), 
+                            cant_produ=cantidad_productos(), 
+                            cant_prove=cantidad_proveedores())
 
 @app.route('/productos/crear', methods = ['GET','POST'])
 def crear_producto():

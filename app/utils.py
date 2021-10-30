@@ -136,3 +136,51 @@ def insertar_usuario(form):
     except Error:
         print(Error)
         return False
+
+####--------------DASHBOARD-----------------------####
+
+def obtener_productos_dash():
+    try:
+        with sqlite3.connect(db) as con:
+            con.row_factory = sqlite3.Row
+            cur = con.cursor()
+            cur.execute(
+                "SELECT * FROM  productos WHERE cantidad_minima > cantidad_disponible ")
+            row = cur.fetchall()
+            return row
+    except Error:
+        print(Error)
+        return Error
+
+
+def cantidad_usuario():
+    try:
+        with sqlite3.connect(db) as con:
+            con.row_factory = sqlite3.Row
+            cur = con.cursor()   
+            return cur.execute("SELECT COUNT(*) FROM usuarios")
+    except Error:
+        print(Error)
+        return False
+
+
+def cantidad_productos():
+    try:
+        with sqlite3.connect(db) as con:
+            con.row_factory = sqlite3.Row
+            cur = con.cursor()
+            return cur.execute("SELECT COUNT(*) FROM productos")
+    except Error:
+        print(Error)
+        return False
+
+
+def cantidad_proveedores():
+    try:
+        with sqlite3.connect(db) as con:
+            con.row_factory = sqlite3.Row
+            cur = con.cursor()
+            return cur.execute("SELECT COUNT(*) FROM proveedores")
+    except Error:
+        print(Error)
+        return False
