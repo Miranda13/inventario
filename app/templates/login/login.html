@@ -28,12 +28,21 @@
           {{ csrf_token }} {{ form.hidden_tag() }}
           <div class="form-group" id="user-group">
             {{ form.correo(class="form-control", placeholder="Correo electrónico")}}
+            {% for error in form.correo.errors %}
+              <span class="error"> {{error}}</span>
+            {% endfor %}
           </div>
           <div class="form-group" id="contrasena-group">
-            {{ form.clave(class="form-control", placeholder="Contraseña") }}       
+            {{ form.clave(class="form-control", placeholder="Contraseña") }}
+            {% for error in form.clave.errors %}
+              <span class="error"> {{error}}</span>
+            {% endfor %}     
           </div>
           <div class="form-group d-flex">
-            {{ form.privacidad }} <p class="m-2" id="check"> Acepto la política de privacidad </p>       
+            {{ form.privacidad }} <p class="m-2" id="check"> Acepto la política de privacidad </p>   
+            {% for error in form.privacidad.errors %}
+              <span class="error"> {{error}}</span>
+            {% endfor %}    
           </div>
           {{ form.enviar(class="btn btn-primary", id="btn-sub")}}
         </form>

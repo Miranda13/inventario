@@ -4,60 +4,89 @@
     <div class="row py-5 justify-content-center">
         <h2>Administrativo</h2>
     </div>
-</div>
-<div class="row m-2 d-flex">
-    <!-- Grid con todos los paneles -->
-    <div class="dashboard-wrapper">
-        <div id='p2' class='panel'><img src="../../static/img/descarga.png" alt="pag">
-            <div id='p2Chart'></div>
-        </div>
-        <div id='p3' class='panel'><img src="../../static/img/descarga.png" alt="pag">
-            <div id='p3Chart'></div>
-        </div>
-        <div id='p4' class='panel'><img src="../../static/img/descarga.png" alt="pag">
-            <div id='p4Chart'></div>
-        </div>
-        <div id='p6' class='panel'><img src="../../static/img/descarga.png" alt="pag">
-            <div id='p4Chart'></div>
-        </div>
-        <div id='p1' class='panel'>
-            <div id='p1Chart'>
 
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td colspan="2"></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
+<div class="content">
+    <div class="row">
+        <div class="col-lg-4 col-md-6">
+            <div class="card card-chart">
+                <div class="card-header">
+                    <h5 class="card-category">Usuarios</h5>
+                    <h4 class="card-title">Cantidad de usuarios</h4>
+                </div>
+                <div class="card-body">
+                    <div class="chart-area">
+                        <h1 class="display-1">{{cant_user}}</h1>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="btn btn-outline-success m-2 my-sm-0 px-2" role="button" onclick="window.location.href='/usuarios'">Ir a usuarios</a>
+                </div>
             </div>
         </div>
-        <div id='p5' class='panel'>
-            <h2></h2>
-            <div id='p5Chart'></div>
+        <div class="col-lg-4 col-md-6">
+            <div class="card card-chart">
+                <div class="card-header">
+                    <h5 class="card-category">Productos</h5>
+                    <h4 class="card-title">Cantidad de productos</h4>
+                </div>
+                <div class="card-body">
+                    <div class="chart-area">
+                        <h1 class="display-1">{{cant_produ}}</h1>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="btn btn-outline-success m-2 my-sm-0 px-2" role="button" onclick="window.location.href='/productos'">Ir a productos</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+            <div class="card card-chart">
+                <div class="card-header">
+                    <h5 class="card-category">Proveedores</h5>
+                    <h4 class="card-title">Cantidad de proveedores</h4>
+                </div>
+                <div class="card-body">
+                    <div class="chart-area">
+                        <h1 class="display-1">{{cant_prove}}</h1>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="#"  class="btn btn-outline-success m-2 my-sm-0 px-2" role="button" onclick="window.location.href='/proveedores'">Ir a proveedores</a>
+                </div>
+            </div>
         </div>
     </div>
+    <div>
+        <div>
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-category text-center">Productos que se requieren</h5>
+                    <h4 class="card-title text-center"> Productos por debajo de cant. minima</h4>
+                </div>
+                <div class="card-body">
+
+                    <table class="table">
+                        <thead class="fila">
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Cantidad disponible</th>
+                            <th scope="col">Cantidad mínima</th>
+                        </thead>
+                        <tbody>
+                            {% for producto in productos %}
+                            <tr>
+                                <td>{{ producto["id"] }}</td>
+                                <td>{{ producto["nombre_producto"] }}</td>
+                                <td>{{ producto["cantidad_disponible"] }}</td>
+                                <td>{{ producto["cantidad_minima"] }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 {% endblock %}

@@ -1,7 +1,58 @@
 import sqlite3
 from sqlite3 import Error
+import hashlib 
+from werkzeug.security import generate_password_hash
 
 db = 'inventario.db'
+
+def obtener_productos_dash():
+    try:
+        with sqlite3.connect(db) as con:
+            con.row_factory = sqlite3.Row
+            cur = con.cursor()
+            cur.execute(
+                "SELECT * FROM  productos WHERE cantidad_minima > cantidad_disponible ")
+            row = cur.fetchall()
+            return row
+    except Error:
+        print(Error)
+        return Error
+
+
+def cantidad_usuario():
+    try:
+        with sqlite3.connect(db) as con:
+            con.row_factory = sqlite3.Row
+            cur = con.cursor()
+            conteo = cur.execute("SELECT COUNT(*) FROM usuarios")
+            return conteo[0]
+    except Error:
+        print(Error)
+        return False
+
+
+def cantidad_productos():
+    try:
+        with sqlite3.connect(db) as con:
+            con.row_factory = sqlite3.Row
+            cur = con.cursor()
+            conteo = cur.execute("SELECT COUNT(*) FROM productos")
+            return conteo[0]
+    except Error:
+        print(Error)
+        return False
+
+
+def cantidad_proveedores():
+    try:
+        with sqlite3.connect(db) as con:
+            con.row_factory = sqlite3.Row
+            cur = con.cursor()
+            conteo = cur.execute("SELECT COUNT(*) FROM proveedores")
+            return conte[0]
+    except Error:
+        print(Error)
+        return False
 
 def obtener_usuarios():
     try:
@@ -21,6 +72,17 @@ def obtener_usuario(id):
             con.row_factory = sqlite3.Row
             cur = con.cursor()
             cur.execute("SELECT * FROM usuarios WHERE usuario_id = ?", [id])
+            row = cur.fetchone()
+            return row
+    except Error:
+        print(Error)
+        return Error
+
+def obtener_usuario_correo(correo):
+    try:
+        with sqlite3.connect(db) as con:
+            cur = con.cursor()
+            cur.execute("SELECT * FROM usuarios WHERE correo = ?", [correo])
             row = cur.fetchone()
             return row
     except Error:
@@ -56,12 +118,13 @@ def actualizar_usuario(form, id):
 def insertar_usuario(form):
     nombre = form.nombre_usuario.data
     clave = form.clave.data
+    hashclave = generate_password_hash(clave)
     correo = form.correo.data
     rol = form.rol.data
     try:
         with sqlite3.connect(db) as con:
             cur = con.cursor()
-            cur.execute("INSERT INTO usuarios(nombre, clave, correo, rol) VALUES (?,?,?,?)", (nombre, clave, correo, rol) )
+            cur.execute("INSERT INTO usuarios(nombre, clave, correo, rol) VALUES (?,?,?,?)", (nombre, hashclave, correo, rol) )
             con.commit()
             return True
     except Error:
@@ -186,7 +249,6 @@ def actualizar_producto(form, id):
         return False
 
 def insertar_producto(form):
-    print('aqui llegue')
     nombre = form.nombre_producto.data
     cant_minim = form.cantidad_minima.data
     cant_disp = form.cantidad_disponible.data
