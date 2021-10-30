@@ -21,7 +21,7 @@ class FormularioUsuario(FlaskForm):
     correo = EmailField(u'Correo', validators=[DataRequired(
         message='** Correo requerido **'), Email()])
     rol = SelectField(u'Rol', validators=[DataRequired(message='** Rol requerido **')],choices=[
-                      ('usuarioFinal', 'Usuario final'), ('superUsuario', 'Super usuario'), ('administrador', 'Administrador')])
+                      ('usuarioFinal', 'Usuario final'), ('superAdmin', 'Super administrador'), ('administrador', 'Administrador')])
     enviar = SubmitField(u'Crear usuario')
 
 

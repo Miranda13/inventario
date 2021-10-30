@@ -17,7 +17,7 @@ def login():
 
 @app.route('/main')
 def main():
-    return render_template('main/main.html')
+    return render_template('home/home.html')
 
 @app.route('/dashboard')
 def dashboard():
@@ -54,7 +54,7 @@ def eliminar_producto(id = int):
 
 @app.route('/usuarios')
 def usuarios():
-    return render_template('usuarios/usuarios.html', usuarios = obtener_usuarios())
+    return render_template('usuarios/usuarios.html', usuarios = obtener_usuarios(), rol="usuarioFinal")
 
 @app.route('/usuarios/crear', methods = ['GET','POST'])
 def crear_usuario():

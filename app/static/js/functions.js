@@ -5,5 +5,9 @@ function ponerId(id) {
 }
 
 function eliminarUsuario(){
-    document.getElementById("eliminarUsuario").action="/usuario/delete"
+    document.getElementById("eliminarUsuario").click(
+        function (event) {
+            console.log("Hola")
+        }
+    )
 }
