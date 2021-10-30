@@ -9,14 +9,16 @@
     <div class="form-row m-2">
       <div class="col">
         {{ form.nombre_proveedor.label(class = "mx-3") }}
-        {{ form.nombre_proveedor(class="form-control mr-sm-2",   placeholder = "Ingrese nombre...") }}
+        {{ form.nombre_proveedor(class="form-control mr-sm-2",   placeholder = "Ingrese nombre...",
+        value = proveedor[4]) }}
         {% for error in form.nombre_proveedor.errors %}
           <span class="error"> {{error}}</span>
         {% endfor %}
       </div>
       <div class="col">
         {{ form.correo.label(class = "mx-3") }}
-        {{ form.correo(class="form-control mr-sm-2",   placeholder = "Ingrese correo...") }}
+        {{ form.correo(class="form-control mr-sm-2",   placeholder = "Ingrese correo...",
+        value = proveedor[3]) }}
         {% for error in form.correo.errors %}
           <span class="error"> {{error}}</span>
         {% endfor %}
@@ -25,14 +27,14 @@
     <div class="form-row m-2">
       <div class="col">
         {{ form.nit.label(class = "mx-3") }}
-        {{ form.nit(class="form-control mr-sm-2",   placeholder = "Ingrese NIT...") }}
+        {{ form.nit(class="form-control mr-sm-2",   placeholder = "Ingrese NIT...", value = proveedor[1]) }}
         {% for error in form.nit.errors %}
           <span class="error"> {{error}}</span>
         {% endfor %}
       </div>
       <div class="col">
         {{ form.telefono.label(class = "mx-3") }}
-        {{ form.telefono(class="form-control mr-sm-2",   placeholder = "Ingrese teléfono...") }}
+        {{ form.telefono(class="form-control mr-sm-2",   placeholder = "Ingrese teléfono...", value = proveedor[2]) }}
         {% for error in form.telefono.errors %}
           <span class="error"> {{error}}</span>
         {% endfor %}

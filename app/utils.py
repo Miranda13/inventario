@@ -1,75 +1,6 @@
 import sqlite3
 from sqlite3 import Error
 
-usuarios = [
-    {
-        "id": 1,
-        "nombre_usuario": "Fulanito",
-        "rol": "usuarioFinal",
-        "correo": "fulanito@gmail.com"
-    },
-    {
-        "id": 2,
-        "nombre_usuario": "Fulanita",
-        "rol": "usuarioFinal",
-        "correo": "fulanita@gmail.com"
-    }
-]
-
-proveedores = [
-    {
-        "id": 1,
-        "nombre_proveedor": "General motors",
-        "nit": "89127312-12",
-        "correo": "general@gmail.com",
-        "telefono": 3124556789,
-        "productos": "Llantas, espejos"
-    },
-    {
-        "id": 2,
-        "nombre_proveedor": "Aero S.A.",
-        "nit": "172763-1",
-        "correo": "aero@gmail.com",
-        "telefono": 3137889900,
-        "productos": "Rines, sillas"
-    },
-    {
-        "id": 3,
-        "nombre_proveedor": "Michelin S.A.",
-        "nit": "8917312-3",
-        "correo": "michelin@gmail.com",
-        "telefono": 3226775544,
-        "productos": "Llantas, bujias"
-    }
-]
-
-productos = [
-    {
-        "id": 1,
-        "nombre_producto": "Llantas",
-        "nombre_proveedor": "Michelin S.A.",
-        "descripcion": "185/165 para auto",
-        "cantidad_disponible": 15,
-        "cantidad_minima": 10
-    },
-    {
-        "id": 2,
-        "nombre_producto": "Rin",
-        "nombre_proveedor": "Aero S.A.",
-        "descripcion": "13 pulgadas",
-        "cantidad_disponible": 50,
-        "cantidad_minima": 20
-    },
-    {
-        "id": 3,
-        "nombre_producto": "Espejos",
-        "nombre_proveedor": "Aero S.A.",
-        "descripcion": "Para carro renault 18",
-        "cantidad_disponible": 35,
-        "cantidad_minima": 40
-    }
-]
-
 db = 'inventario.db'
 
 def obtener_usuarios():
@@ -131,6 +62,139 @@ def insertar_usuario(form):
         with sqlite3.connect(db) as con:
             cur = con.cursor()
             cur.execute("INSERT INTO usuarios(nombre, clave, correo, rol) VALUES (?,?,?,?)", (nombre, clave, correo, rol) )
+            con.commit()
+            return True
+    except Error:
+        print(Error)
+        return False
+
+def obtener_proveedores():
+    try:
+        with sqlite3.connect(db) as con:
+            con.row_factory = sqlite3.Row 
+            cur = con.cursor()
+            cur.execute("SELECT * FROM  proveedores")
+            row = cur.fetchall()
+            return row
+    except  Error:
+        print(Error)
+        return Error
+
+def obtener_proveedor(id):
+    try:
+        with sqlite3.connect(db) as con:
+            con.row_factory = sqlite3.Row
+            cur = con.cursor()
+            cur.execute("SELECT * FROM proveedores WHERE proveedor_id = ?", [id])
+            row = cur.fetchone()
+            return row
+    except Error:
+        print(Error)
+        return Error
+
+def quitar_proveedor(id):
+    try:
+        with sqlite3.connect(db) as con:
+            con.row_factory = sqlite3.Row
+            cur = con.cursor()
+            cur.execute("DELETE FROM proveedores WHERE proveedor_id = ?", [id])
+            return con.total_changes > 0
+    except Error:
+        print(Error)
+        return False
+
+def actualizar_proveedor(form, id):
+    nombre = form.nombre_proveedor.data
+    telefono = form.telefono.data
+    correo = form.correo.data
+    nit = form.nit.data
+    try:
+        with sqlite3.connect(db) as con:
+            cur = con.cursor()
+            cur.execute("UPDATE proveedores SET nombre=?, telefono=?, correo=?, nit=? WHERE proveedor_id = ?", [nombre, telefono, correo, nit, id] )
+            con.commit()
+            return con.total_changes > 0
+    except Error:
+        print(Error)
+        return False
+
+def insertar_proveedor(form):
+    nombre = form.nombre_proveedor.data
+    telefono = form.telefono.data
+    correo = form.correo.data
+    nit = form.nit.data
+    try:
+        with sqlite3.connect(db) as con:
+            cur = con.cursor()
+            cur.execute("INSERT INTO proveedores (nombre, telefono, correo, nit) VALUES (?,?,?,?)", (nombre, telefono, correo, nit) )
+            con.commit()
+            return True
+    except Error:
+        print(Error)
+        return False
+
+#################### CRUD de Productos #######################
+
+def obtener_productos():
+    try:
+        with sqlite3.connect(db) as con:
+            con.row_factory = sqlite3.Row 
+            cur = con.cursor()
+            cur.execute("SELECT * FROM  productos")
+            row = cur.fetchall()
+            return row
+    except  Error:
+        print(Error)
+        return Error
+
+def obtener_producto(id):
+    try:
+        with sqlite3.connect(db) as con:
+            con.row_factory = sqlite3.Row
+            cur = con.cursor()
+            cur.execute("SELECT * FROM productos WHERE producto_id = ?", [id])
+            row = cur.fetchone()
+            return row
+    except Error:
+        print(Error)
+        return Error
+
+def quitar_producto(id):
+    try:
+        with sqlite3.connect(db) as con:
+            con.row_factory = sqlite3.Row
+            cur = con.cursor()
+            cur.execute("DELETE FROM productos WHERE producto_id = ?", [id])
+            return con.total_changes > 0
+    except Error:
+        print(Error)
+        return False
+
+def actualizar_producto(form, id):
+    nombre = form.nombre_producto.data
+    cant_minim = form.cantidad_minima.data
+    cant_disp = form.cantidad_disponible.data
+    descripcion = form.descripcion.data
+    try:
+        with sqlite3.connect(db) as con:
+            cur = con.cursor()
+            cur.execute("UPDATE productos SET nombre=?, cant_minima=?, cant_disponible=?, descripcion=? WHERE producto_id = ?", [nombre, cant_minim, cant_disp, descripcion  ,id] )
+            con.commit()
+            return con.total_changes > 0
+    except Error:
+        print(Error)
+        return False
+
+def insertar_producto(form):
+    print('aqui llegue')
+    nombre = form.nombre_producto.data
+    cant_minim = form.cantidad_minima.data
+    cant_disp = form.cantidad_disponible.data
+    descripcion = form.descripcion.data
+    try:
+        with sqlite3.connect(db) as con:
+            cur = con.cursor()
+            cur.execute("INSERT INTO productos(nombre, cantidad_minima, cantidad_disponible, descripcion) VALUES (?,?,?,?)", (nombre, cant_minim, cant_disp, descripcion) )
             con.commit()
             return True
     except Error:

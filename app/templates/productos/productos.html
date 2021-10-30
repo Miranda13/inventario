@@ -26,7 +26,7 @@
           <th scope="col">ID</th>
           <th scope="col">Nombre</th>
           <th scope="col">Descripción</th>
-          <th scope="col">Proveedores</th>
+          <!-- <th scope="col">Proveedores</th> -->
           <th scope="col">Cantidad disponible</th>
           <th scope="col">Cantidad mínima</th>
           <th scope="col">Acciones</th>
@@ -35,14 +35,14 @@
       <tbody>
         {% for producto in productos %}
           <tr>
-            <td>{{ producto["id"] }}</td>
-            <td>{{ producto["nombre_producto"] }}</td>
+            <td>{{ producto["producto_id"] }}</td>
+            <td>{{ producto["nombre"] }}</td>
             <td>{{ producto["descripcion"] }}</td>
-            <td>{{ producto["nombre_proveedor"] }}</td>
-            <td>{{ producto["cantidad_disponible"] }}</td>
-            <td>{{ producto["cantidad_minima"] }}</td>
+            <!-- <td>{{ producto["nombre_proveedor"] }}</td> -->
+            <td>{{ producto["cant_disponible"] }}</td>
+            <td>{{ producto["cant_minima"] }}</td>
             <td>
-              <a href="{{ '/productos/editar/%s'%producto['id'] }}">
+              <a href="{{ '/productos/editar/%s'%producto['producto_id'] }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 8 8">
                   <path d="M6 0l-1 1 2 2 1-1-2-2zm-2 2l-4 4v2h2l4-4-2-2z" />
                 </svg>
