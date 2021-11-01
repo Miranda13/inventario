@@ -1,3 +1,4 @@
+from utils import obtener_proveedores
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField, IntegerField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, NumberRange
@@ -38,6 +39,7 @@ class FormularioProveedor(FlaskForm):
 
 
 class FormularioProducto(FlaskForm):
+    proveedores = obtener_proveedores()
     nombre_producto = StringField('Nombre', validators=[DataRequired(
         message='** Nombre requerido **'), Length(min=10)])
     #nombre_proveedor = SelectField(u'Proveedor', validators=[DataRequired(message='** Proveedor requerido **')], choices=[

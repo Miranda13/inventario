@@ -8,7 +8,7 @@
 <div class="content">
     <div class="row">
         <div class="col-lg-4 col-md-6">
-            <div class="card card-chart">
+            <div class="card card-chart m-1">
                 <div class="card-header">
                     <h5 class="card-category">Usuarios</h5>
                     <h4 class="card-title">Cantidad de usuarios</h4>
@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="col-lg-4 col-md-6">
-            <div class="card card-chart">
+            <div class="card card-chart m-1">
                 <div class="card-header">
                     <h5 class="card-category">Productos</h5>
                     <h4 class="card-title">Cantidad de productos</h4>
@@ -40,7 +40,7 @@
             </div>
         </div>
         <div class="col-lg-4 col-md-6">
-            <div class="card card-chart">
+            <div class="card card-chart m-1">
                 <div class="card-header">
                     <h5 class="card-category">Proveedores</h5>
                     <h4 class="card-title">Cantidad de proveedores</h4>
@@ -61,7 +61,7 @@
             <div class="card">
                 <div class="card-header">
                     <h5 class="card-category text-center">Productos que se requieren</h5>
-                    <h4 class="card-title text-center"> Productos por debajo de cant. minima</h4>
+                    <h4 class="card-title text-center"> Productos por debajo de cantidad mínima</h4>
                 </div>
                 <div class="card-body">
 
@@ -71,14 +71,16 @@
                             <th scope="col">Nombre</th>
                             <th scope="col">Cantidad disponible</th>
                             <th scope="col">Cantidad mínima</th>
+                            <th scope="col">Cantidad a solicitar</th>
                         </thead>
                         <tbody>
                             {% for producto in productos %}
                             <tr>
-                                <td>{{ producto["id"] }}</td>
-                                <td>{{ producto["nombre_producto"] }}</td>
-                                <td>{{ producto["cantidad_disponible"] }}</td>
-                                <td>{{ producto["cantidad_minima"] }}</td>
+                                <td>{{ producto["producto_id"] }}</td>
+                                <td>{{ producto["nombre"] }}</td>
+                                <td>{{ producto["cant_disponible"] }}</td>
+                                <td>{{ producto["cant_minima"] }}</td>
+                                <td>{{ producto["cant_minima"] - producto["cant_disponible"] }}</td>
                             </tr>
                             {% endfor %}
                         </tbody>

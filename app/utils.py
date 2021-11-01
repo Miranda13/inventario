@@ -11,7 +11,7 @@ def obtener_productos_dash():
             con.row_factory = sqlite3.Row
             cur = con.cursor()
             cur.execute(
-                "SELECT * FROM  productos WHERE cantidad_minima > cantidad_disponible ")
+                "SELECT * FROM  productos WHERE cant_minima > cant_disponible ")
             row = cur.fetchall()
             return row
     except Error:
@@ -22,9 +22,9 @@ def obtener_productos_dash():
 def cantidad_usuario():
     try:
         with sqlite3.connect(db) as con:
-            con.row_factory = sqlite3.Row
             cur = con.cursor()
-            conteo = cur.execute("SELECT COUNT(*) FROM usuarios")
+            cur.execute("SELECT COUNT(*) as conteo FROM usuarios")
+            conteo = cur.fetchone()
             return conteo[0]
     except Error:
         print(Error)
@@ -34,9 +34,9 @@ def cantidad_usuario():
 def cantidad_productos():
     try:
         with sqlite3.connect(db) as con:
-            con.row_factory = sqlite3.Row
             cur = con.cursor()
-            conteo = cur.execute("SELECT COUNT(*) FROM productos")
+            cur.execute("SELECT COUNT(*) as conteo FROM productos")
+            conteo = cur.fetchone()
             return conteo[0]
     except Error:
         print(Error)
@@ -46,10 +46,10 @@ def cantidad_productos():
 def cantidad_proveedores():
     try:
         with sqlite3.connect(db) as con:
-            con.row_factory = sqlite3.Row
             cur = con.cursor()
-            conteo = cur.execute("SELECT COUNT(*) FROM proveedores")
-            return conte[0]
+            cur.execute("SELECT COUNT(*) as conteo FROM proveedores")
+            conteo = cur.fetchone()
+            return conteo[0]
     except Error:
         print(Error)
         return False
@@ -150,6 +150,7 @@ def obtener_proveedor(id):
             cur = con.cursor()
             cur.execute("SELECT * FROM proveedores WHERE proveedor_id = ?", [id])
             row = cur.fetchone()
+            print(row)
             return row
     except Error:
         print(Error)

@@ -21,7 +21,6 @@ def login():
                 if check_password_hash(usuario[2],clave):
                     session["usuario"] = usuario
                     session["rol"] = usuario[4]
-                    print(session["rol"])
                     return redirect("main")
                 else:
                     return "Contraseña incorrecta"
@@ -48,14 +47,14 @@ def error():
 
 @app.route('/dashboard')
 def dashboard():
-    if "usuario" in session:
-        return render_template('dashboard/dashboard.html',                             
-                                productos = obtener_productos_dash(),
-                                cant_user = cantidad_usuario(),
-                                cant_produ = cantidad_productos(),
-                                cant_prove = cantidad_proveedores())
-    else:
-        return render_template('error/error.html')
+    #if "usuario" in session:
+    return render_template('dashboard/dashboard.html',                             
+                            productos = obtener_productos_dash(),
+                            cant_user = cantidad_usuario(),
+                            cant_produ = cantidad_productos(),
+                            cant_prove = cantidad_proveedores())
+    #else:
+        #return render_template('error/error.html')
 
 ####--------------CRUD PRODUCTOS-----------------------####
 
