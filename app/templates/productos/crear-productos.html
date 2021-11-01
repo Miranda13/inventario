@@ -41,11 +41,13 @@
     </div>
     <div class="row m-4">
       {{ form.enviar(class = "btn btn-outline-success m-2 my-sm-0 px-2") }}
-      <button class="btn btn-outline-danger m-2 my-sm-0 px-2">
-        Cancelar
-      </button>
     </div>
   </form>
+  <div class="row">
+    <button onclick="window.location.href='/productos'" class="btn btn-outline-danger ml-5 my-sm-0 px-2">
+      Cancelar
+    </button>
+  </div>
 </div>
 
 {% endblock %}

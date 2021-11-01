@@ -44,12 +44,12 @@
                   <path d="M6 0l-1 1 2 2 1-1-2-2zm-2 2l-4 4v2h2l4-4-2-2z" />
                 </svg>
               </a>
-              <button type="button" class="btn btn-link" onclick="ponerId(1)" data-toggle="modal" data-target="#eliminarModal">
+              <a href="{{ '/usuarios/eliminar/%s'%usuario['usuario_id'] }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 8 8">
                   <path
                     d="M3 0c-.55 0-1 .45-1 1h-1c-.55 0-1 .45-1 1h7c0-.55-.45-1-1-1h-1c0-.55-.45-1-1-1h-1zm-2 3v4.81c0 .11.08.19.19.19h4.63c.11 0 .19-.08.19-.19v-4.81h-1v3.5c0 .28-.22.5-.5.5s-.5-.22-.5-.5v-3.5h-1v3.5c0 .28-.22.5-.5.5s-.5-.22-.5-.5v-3.5h-1z" />
                 </svg>
-              </button>
+              </a>
             </td>
           </tr>
         {% endfor %}
@@ -65,28 +65,6 @@
       <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
     </ul>
   </nav>
-
-  <!-- Modal -->
-  <div class="modal fade" id="eliminarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">ELIMINAR USUARIO</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ¿Está seguro que desea eliminar el usuario?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <button id="eliminarUsuario" type="button" onclick="eliminarUsuario()" class="btn btn-danger">Eliminar usuario</button>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 
 {% endblock %}
