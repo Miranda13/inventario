@@ -1,6 +1,6 @@
 import sqlite3
 from sqlite3 import Error
-import hashlib 
+import hashlib
 from werkzeug.security import generate_password_hash
 
 db = 'inventario.db'
@@ -54,17 +54,19 @@ def cantidad_proveedores():
         print(Error)
         return False
 
+
 def obtener_usuarios():
     try:
         with sqlite3.connect(db) as con:
-            con.row_factory = sqlite3.Row 
+            con.row_factory = sqlite3.Row
             cur = con.cursor()
             cur.execute("SELECT * FROM  usuarios")
             row = cur.fetchall()
             return row
-    except  Error:
+    except Error:
         print(Error)
         return Error
+
 
 def obtener_usuario(id):
     try:
@@ -78,6 +80,7 @@ def obtener_usuario(id):
         print(Error)
         return Error
 
+
 def obtener_usuario_correo(correo):
     try:
         with sqlite3.connect(db) as con:
@@ -89,12 +92,35 @@ def obtener_usuario_correo(correo):
         print(Error)
         return Error
 
+
 def quitar_usuario(id):
     try:
         with sqlite3.connect(db) as con:
             con.row_factory = sqlite3.Row
             cur = con.cursor()
             cur.execute("DELETE FROM usuarios WHERE usuario_id = ?", [id])
+            return con.total_changes > 0
+    except Error:
+        print(Error)
+        return False
+
+def quitar_relacion_producto(id):
+    try:
+        with sqlite3.connect(db) as con:
+            con.row_factory = sqlite3.Row
+            cur = con.cursor()
+            cur.execute("DELETE FROM proveedoresxproductos  WHERE productos_id = ?", [id])
+            return con.total_changes > 0
+    except Error:
+        print(Error)
+        return False
+
+def quitar_relacion_proveedor(id):
+    try:
+        with sqlite3.connect(db) as con:
+            con.row_factory = sqlite3.Row
+            cur = con.cursor()
+            cur.execute("DELETE FROM proveedoresxproductos  WHERE proveedor_id = ?", [id])
             return con.total_changes > 0
     except Error:
         print(Error)
@@ -108,12 +134,14 @@ def actualizar_usuario(form, id):
     try:
         with sqlite3.connect(db) as con:
             cur = con.cursor()
-            cur.execute("UPDATE usuarios SET nombre=?, clave=?, correo=?, rol=? WHERE usuario_id = ?", [nombre, clave, correo, rol, id] )
+            cur.execute("UPDATE usuarios SET nombre=?, clave=?, correo=?, rol=? WHERE usuario_id = ?", [
+                        nombre, clave, correo, rol, id])
             con.commit()
             return con.total_changes > 0
     except Error:
         print(Error)
         return False
+
 
 def insertar_usuario(form):
     nombre = form.nombre_usuario.data
@@ -124,37 +152,42 @@ def insertar_usuario(form):
     try:
         with sqlite3.connect(db) as con:
             cur = con.cursor()
-            cur.execute("INSERT INTO usuarios(nombre, clave, correo, rol) VALUES (?,?,?,?)", (nombre, hashclave, correo, rol) )
+            cur.execute("INSERT INTO usuarios(nombre, clave, correo, rol) VALUES (?,?,?,?)",
+                        (nombre, hashclave, correo, rol))
             con.commit()
             return True
     except Error:
         print(Error)
         return False
 
+
 def obtener_proveedores():
     try:
         with sqlite3.connect(db) as con:
-            con.row_factory = sqlite3.Row 
+            con.row_factory = sqlite3.Row
             cur = con.cursor()
             cur.execute("SELECT * FROM  proveedores")
             row = cur.fetchall()
             return row
-    except  Error:
+    except Error:
         print(Error)
         return Error
+
 
 def obtener_proveedor(id):
     try:
         with sqlite3.connect(db) as con:
             con.row_factory = sqlite3.Row
             cur = con.cursor()
-            cur.execute("SELECT * FROM proveedores WHERE proveedor_id = ?", [id])
+            cur.execute(
+                "SELECT * FROM proveedores WHERE proveedor_id = ?", [id])
             row = cur.fetchone()
             print(row)
             return row
     except Error:
         print(Error)
         return Error
+
 
 def quitar_proveedor(id):
     try:
@@ -167,6 +200,7 @@ def quitar_proveedor(id):
         print(Error)
         return False
 
+
 def actualizar_proveedor(form, id):
     nombre = form.nombre_proveedor.data
     telefono = form.telefono.data
@@ -175,12 +209,14 @@ def actualizar_proveedor(form, id):
     try:
         with sqlite3.connect(db) as con:
             cur = con.cursor()
-            cur.execute("UPDATE proveedores SET nombre=?, telefono=?, correo=?, nit=? WHERE proveedor_id = ?", [nombre, telefono, correo, nit, id] )
+            cur.execute("UPDATE proveedores SET nombre=?, telefono=?, correo=?, nit=? WHERE proveedor_id = ?", [
+                        nombre, telefono, correo, nit, id])
             con.commit()
             return con.total_changes > 0
     except Error:
         print(Error)
         return False
+
 
 def insertar_proveedor(form):
     nombre = form.nombre_proveedor.data
@@ -190,7 +226,8 @@ def insertar_proveedor(form):
     try:
         with sqlite3.connect(db) as con:
             cur = con.cursor()
-            cur.execute("INSERT INTO proveedores (nombre, telefono, correo, nit) VALUES (?,?,?,?)", (nombre, telefono, correo, nit) )
+            cur.execute("INSERT INTO proveedores (nombre, telefono, correo, nit) VALUES (?,?,?,?)",
+                        (nombre, telefono, correo, nit))
             con.commit()
             return True
     except Error:
@@ -199,17 +236,54 @@ def insertar_proveedor(form):
 
 #################### CRUD de Productos #######################
 
+
 def obtener_productos():
     try:
         with sqlite3.connect(db) as con:
-            con.row_factory = sqlite3.Row 
+            con.row_factory = sqlite3.Row
             cur = con.cursor()
             cur.execute("SELECT * FROM  productos")
             row = cur.fetchall()
             return row
-    except  Error:
+    except Error:
         print(Error)
         return Error
+
+
+def obtener_productos_proveedores(id):
+    try:
+        with sqlite3.connect(db) as con:
+            con.row_factory = sqlite3.Row
+            cur = con.cursor()
+            cur.execute("""
+                SELECT prov.nombre, prov.nit, prov.telefono, prov.correo 
+                FROM  productos AS pro 
+                INNER JOIN proveedoresxproductos AS  pxp ON pxp.productos_id = pro.producto_id 
+                INNER JOIN proveedores as prov ON pxp.proveedor_id = prov.proveedor_id 
+                WHERE pro.producto_id = ?""", [id])
+            row = cur.fetchall()
+            return row
+    except Error:
+        print(Error)
+        return Error
+
+def obtener_proveedores_productos(id):
+    try:
+        with sqlite3.connect(db) as con:
+            con.row_factory = sqlite3.Row
+            cur = con.cursor()
+            cur.execute("""
+                SELECT pro.producto_id
+                FROM  productos AS pro 
+                INNER JOIN proveedoresxproductos AS  pxp ON pxp.productos_id = pro.producto_id 
+                INNER JOIN proveedores as prov ON pxp.proveedor_id = prov.proveedor_id 
+                WHERE prov.proveedor_id = ?""", [id])
+            row = cur.fetchall()
+            return row
+    except Error:
+        print(Error)
+        return Error
+
 
 def obtener_producto(id):
     try:
@@ -223,6 +297,7 @@ def obtener_producto(id):
         print(Error)
         return Error
 
+
 def quitar_producto(id):
     try:
         with sqlite3.connect(db) as con:
@@ -234,6 +309,7 @@ def quitar_producto(id):
         print(Error)
         return False
 
+
 def actualizar_producto(form, id):
     nombre = form.nombre_producto.data
     cant_minim = form.cantidad_minima.data
@@ -242,23 +318,33 @@ def actualizar_producto(form, id):
     try:
         with sqlite3.connect(db) as con:
             cur = con.cursor()
-            cur.execute("UPDATE productos SET nombre=?, cant_minima=?, cant_disponible=?, descripcion=? WHERE producto_id = ?", [nombre, cant_minim, cant_disp, descripcion  ,id] )
+            cur.execute("UPDATE productos SET nombre=?, cant_minima=?, cant_disponible=?, descripcion=? WHERE producto_id = ?", [
+                        nombre, cant_minim, cant_disp, descripcion, id])
             con.commit()
             return con.total_changes > 0
     except Error:
         print(Error)
         return False
 
+
 def insertar_producto(form):
     nombre = form.nombre_producto.data
     cant_minim = form.cantidad_minima.data
     cant_disp = form.cantidad_disponible.data
     descripcion = form.descripcion.data
+    proveedores = form.nombre_proveedor.data
     try:
         with sqlite3.connect(db) as con:
             cur = con.cursor()
-            cur.execute("INSERT INTO productos(nombre, cantidad_minima, cantidad_disponible, descripcion) VALUES (?,?,?,?)", (nombre, cant_minim, cant_disp, descripcion) )
+            cur.execute("INSERT INTO productos(nombre, cant_minima, cant_disponible, descripcion) VALUES (?,?,?,?)",
+                        (nombre, cant_minim, cant_disp, descripcion))
             con.commit()
+            id_producto = cur.lastrowid
+            for prov in proveedores:
+                cur = con.cursor()
+                cur.execute(
+                    "INSERT INTO proveedoresxproductos(proveedor_id, productos_id) VALUES (?,?)", (prov, id_producto))
+                con.commit()
             return True
     except Error:
         print(Error)

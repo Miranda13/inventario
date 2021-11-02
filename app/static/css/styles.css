@@ -12,6 +12,14 @@
     box-sizing: border-box;
 }
 
+footer {
+    background-color: var(--colorPrincipal);
+    color:  var(--colorSecundario);
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    
+}
 
 .nav {
     color: white;
@@ -38,6 +46,7 @@ li {
 
 svg {
     margin: 5px;
+    color: black;
 }
 
 header {

@@ -12,16 +12,18 @@
         Buscar
       </button>
     </form>
-    <button onclick="window.location.href='/proveedores/crear'" type="button"
-      class="btn ml-auto mr-4 my-2" id="buttonMain">
-      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 8 8">
-        <path fill="#ffff" d="M3 0v3h-3v2h3v3h2v-3h3v-2h-3v-3h-2z" />
-      </svg>
-      Nuevo proveedor
-    </button>
+    {% if rol == "superAdmin" or rol == "administrador" %}
+      <button onclick="window.location.href='/proveedores/crear'" type="button"
+        class="btn ml-auto mr-4 my-2" id="buttonMain">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 8 8">
+          <path fill="#ffff" d="M3 0v3h-3v2h3v3h2v-3h3v-2h-3v-3h-2z" />
+        </svg>
+        Nuevo proveedor
+      </button>
+    {% endif %}
   </div>
-  <div class="row">
-    <table class="table table-striped mx-5 my-2">
+  <div class="table-responsive">
+    <table class="table table-striped">
       <thead>
         <tr class="fila">
           <th scope="col">ID</th>
@@ -61,7 +63,7 @@
       </tbody>
     </table>
   </div>
-  <nav class="d-flex justify-content-end m-4" aria-label="Page navigation example">
+  <nav class="d-flex justify-content-end m-4">
     <ul class="pagination">
       <li class="page-item"><a class="page-link" href="#">Anterior</a></li>
       <li class="page-item"><a class="page-link" href="#">1</a></li>

@@ -1,10 +1,7 @@
-from utils import obtener_proveedores
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField, IntegerField, TextAreaField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField, IntegerField, SelectMultipleField
 from wtforms.validators import DataRequired, Length, Email, NumberRange
 from wtforms.fields.html5 import EmailField
-from wtforms.widgets import TextArea
-
 class FormularioIngreso(FlaskForm):
     correo = EmailField(u'Correo', validators=[DataRequired(
         message='** Correo requerido **'), Email()])
@@ -39,11 +36,9 @@ class FormularioProveedor(FlaskForm):
 
 
 class FormularioProducto(FlaskForm):
-    proveedores = obtener_proveedores()
     nombre_producto = StringField('Nombre', validators=[DataRequired(
         message='** Nombre requerido **'), Length(min=10)])
-    #nombre_proveedor = SelectField(u'Proveedor', validators=[DataRequired(message='** Proveedor requerido **')], choices=[
-                            #('1', 'General motors'), ('2', 'Aero S.A.'), ('3', 'Michelin S.A.')])
+    nombre_proveedor = SelectMultipleField(u'Proveedor', coerce = int, validators=[DataRequired(message='** Proveedor requerido **')])
     descripcion = StringField('Descripción', validators=[DataRequired(
         message='** Correo requerido **'), Length(min=10, max=100)])
     cantidad_disponible = IntegerField(u'Cantidad disponible', validators=[DataRequired(

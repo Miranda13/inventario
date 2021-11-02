@@ -1,0 +1,60 @@
+{% extends 'main/main.html'%} {% block content %}
+<div class="container mt-2">
+    <button onclick="window.location.href='/productos'"  class="btn btn-outline-success my-sm-0 px-2">
+        Volver
+    </button>
+  <div class="row py-3 justify-content-center">
+    <h2>Detalles del producto</h2>
+  </div>
+  <form action="#" name="form" method="POST" novalidate>
+    {{ csrf_token }} {{ form.hidden_tag() }}
+    <div class="form-row m-2">
+      <div class="col">
+        {{ form.nombre_producto.label(class = "mx-3") }}
+        {{ form.nombre_producto(class="form-control mr-sm-2", value = producto[1], disabled = True) }}
+      </div>
+    </div>
+    <div class="form-row m-2">
+      <div class="col">
+        {{ form.cantidad_disponible.label(class = "mx-3") }}
+        {{ form.cantidad_disponible(class="form-control mr-sm-2", type = "number", value = producto[2], disabled = True) }}
+      </div>
+      <div class="col">
+        {{ form.cantidad_minima.label(class = "mx-3") }}
+        {{ form.cantidad_minima(class="form-control mr-sm-2", type = "number", value = producto[3], disabled = True) }}
+      </div>
+    </div>
+    <div class="form-row m-2">
+      <div class="col">
+        {{ form.descripcion.label(class = "mx-3") }}
+        {{ form.descripcion(class="form-control mr-sm-2", value = producto[4], disabled = True) }}
+      </div>
+    </div>
+  </form>
+  <div class="row py-3 justify-content-center">
+    <h3>Proveedores</h3>
+  </div>
+  <div class="table-responsive mt-2">
+    <table class="table table-striped">
+      <thead>
+        <tr class="fila">
+          <th scope="col">NIT</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Teléfono</th>
+          <th scope="col">Correo</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for proveedor in proveedores %}
+          <tr>
+            <td>{{ proveedor["nit"] }}</td>
+            <td>{{ proveedor["nombre"] }}</td>
+            <td>{{ proveedor["telefono"] }}</td>
+            <td>{{ proveedor["correo"] }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
